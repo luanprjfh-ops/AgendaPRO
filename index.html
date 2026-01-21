@@ -12,13 +12,12 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="AgendaPRO — Sistema premium de gestão" />
   <meta property="og:description" content="Agenda inteligente, serviços, profissionais, produtos e clientes em um painel moderno e intuitivo." />
-  <meta property="og:image" content="assets/login.png" />
+  <meta property="og:image" content="login.png" />
 
-  <!-- Base de assets (GitHub Pages / qualquer pasta) -->
-  <meta name="asset-base" content="assets/" />
+  <!-- Base dos assets: como suas imagens estão NA RAIZ do repositório, fica vazio -->
+  <meta name="asset-base" content="" />
 
   <style>
-    /* ========= RESET / BASE ========= */
     *,*::before,*::after{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -38,7 +37,6 @@
     .tiny{font-size:12px}
     .sr-only{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
 
-    /* ========= FX LAYERS ========= */
     .noise{
       pointer-events:none;
       position:fixed; inset:0;
@@ -56,7 +54,6 @@
       opacity:.25;
     }
 
-    /* ========= HEADER ========= */
     header{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(12px);
@@ -141,7 +138,6 @@
     }
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* ========= HERO ========= */
     .hero{padding:68px 0 36px; position:relative}
     .hero-grid{
       display:grid;
@@ -204,7 +200,6 @@
       font-size:12px;
     }
 
-    /* ========= SHOWCASE / SLIDER ========= */
     .showcase{
       position:relative;
       border-radius:24px;
@@ -306,7 +301,6 @@
       border-radius:99px;
     }
 
-    /* ========= SECTION ========= */
     section{padding:40px 0}
     .section-title{display:flex; align-items:end; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:16px}
     .section-title h2{margin:0; font-size: clamp(22px, 2.3vw, 30px); letter-spacing:-.35px}
@@ -322,7 +316,6 @@
       gap:8px;
     }
 
-    /* ========= CARDS ========= */
     .cards{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
     .card{
       border:1px solid rgba(255,255,255,.12);
@@ -369,7 +362,6 @@
       font-size:12px;
     }
 
-    /* ========= PRICING ========= */
     .pricing{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
     .price-card{
       border-radius:22px;
@@ -396,7 +388,6 @@
       margin-top:1px;
     }
 
-    /* ========= FAQ ========= */
     details{
       border-radius:18px;
       border:1px solid rgba(255,255,255,.12);
@@ -408,16 +399,12 @@
     summary::-webkit-details-marker{display:none}
     details p{margin:10px 0 0; color:rgba(255,255,255,.74); line-height:1.5}
 
-    /* ========= FOOTER ========= */
     footer{
       border-top:1px solid rgba(255,255,255,.08);
       padding:26px 0 34px;
       color:rgba(255,255,255,.70);
     }
-    .footergrid{display:grid; grid-template-columns: 1fr; gap:10px; align-items:start}
-    .fine{color:rgba(255,255,255,.62); font-size:13px; line-height:1.55}
 
-    /* ========= WHATSAPP FLOAT + MODAL ========= */
     .wa{position:fixed; right:18px; bottom:18px; z-index:80}
     .wa button{
       display:inline-flex; align-items:center; gap:10px;
@@ -504,7 +491,6 @@
       font-weight:900;
     }
 
-    /* ========= RESPONSIVE ========= */
     @media (max-width: 980px){
       .hero-grid{grid-template-columns:1fr}
       .cards{grid-template-columns: 1fr}
@@ -546,7 +532,6 @@
   </header>
 
   <main id="top">
-    <!-- HERO -->
     <div class="container hero">
       <div class="hero-grid">
         <div>
@@ -569,25 +554,21 @@
           <div class="mini-proof">
             <span class="pill"><span class="check">✓</span> Interface moderna</span>
             <span class="pill"><span class="check">✓</span> Fluxo rápido</span>
-            <span class="pill"><span class="check">✓</span> Ideal para equipes</span>
             <span class="pill"><span class="check">✓</span> Controle total</span>
           </div>
         </div>
 
-        <!-- SHOWCASE -->
         <div class="showcase" id="demo" aria-label="Demonstração do sistema">
           <div class="showcase-inner">
             <div class="slide-img" id="slideBox">
-              <img id="slideImage" src="assets/login.png" alt="Tela do AgendaPRO" loading="eager" decoding="async">
+              <img id="slideImage" src="login.png" alt="Tela do AgendaPRO" loading="eager" decoding="async">
               <div class="img-fallback sr-only" id="imgFallback" aria-live="polite"></div>
             </div>
 
             <div class="slide-meta">
               <div class="kicker"><span>⚡</span><span id="slideKicker">Acesso premium</span></div>
               <h3 id="slideTitle">Login rápido e seguro</h3>
-              <p id="slideText">
-                Entre no painel e tenha tudo organizado em segundos — com visual elegante e foco no que importa.
-              </p>
+              <p id="slideText">Entre no painel e tenha tudo organizado em segundos — com visual elegante e foco no que importa.</p>
 
               <div class="slide-controls" aria-label="Controles do carrossel">
                 <div class="dots" id="dots"></div>
@@ -597,20 +578,15 @@
                 </div>
               </div>
 
-              <div class="progress" aria-hidden="true">
-                <div class="bar" id="bar"></div>
-              </div>
-
-              <div class="tiny muted" style="margin-top:8px;">
-                Troca automática. Passe o mouse para pausar. Clique nos pontos para escolher a tela.
-              </div>
+              <div class="progress" aria-hidden="true"><div class="bar" id="bar"></div></div>
+              <div class="tiny muted" style="margin-top:8px;">Troca automática. Passe o mouse para pausar. Clique nos pontos para escolher a tela.</div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
 
-    <!-- BENEFITS -->
     <section id="beneficios">
       <div class="container">
         <div class="section-title">
@@ -622,46 +598,13 @@
         </div>
 
         <div class="cards">
-          <article class="card">
-            <div class="chip"><span class="mini">⏱</span> Velocidade</div>
-            <h3>Atendimento mais rápido</h3>
-            <p>Cadastros e ações em poucos cliques. Menos “vai e volta”, mais cliente atendido.</p>
-          </article>
-
-          <article class="card">
-            <div class="chip"><span class="mini">🧾</span> Organização</div>
-            <h3>Agenda + Serviços + Profissionais</h3>
-            <p>Tudo conectado: serviço, duração, preço, profissional e horários — sem confusão.</p>
-          </article>
-
-          <article class="card">
-            <div class="chip"><span class="mini">📦</span> Controle</div>
-            <h3>Produtos e estoque</h3>
-            <p>Cadastro com preço e código. Visão clara do que entra, sai e o que precisa repor.</p>
-          </article>
-
-          <article class="card">
-            <div class="chip"><span class="mini">💬</span> Relacionamento</div>
-            <h3>Clientes e histórico</h3>
-            <p>Preferências, serviços e recorrência — fidelização de verdade.</p>
-          </article>
-
-          <article class="card">
-            <div class="chip"><span class="mini">🔒</span> Segurança</div>
-            <h3>Permissões por perfil</h3>
-            <p>Cada pessoa vê o que precisa — sem risco de bagunçar o sistema.</p>
-          </article>
-
-          <article class="card">
-            <div class="chip"><span class="mini">✨</span> Premium</div>
-            <h3>Design que impressiona</h3>
-            <p>Uma experiência tecnológica, intuitiva e com cara de produto grande.</p>
-          </article>
+          <article class="card"><div class="chip"><span class="mini">⏱</span> Velocidade</div><h3>Atendimento mais rápido</h3><p>Cadastros e ações em poucos cliques. Menos “vai e volta”, mais cliente atendido.</p></article>
+          <article class="card"><div class="chip"><span class="mini">🧾</span> Organização</div><h3>Agenda + Serviços + Profissionais</h3><p>Tudo conectado: serviço, duração, preço, profissional e horários — sem confusão.</p></article>
+          <article class="card"><div class="chip"><span class="mini">📦</span> Controle</div><h3>Produtos e estoque</h3><p>Cadastro com preço e código. Visão clara do que entra, sai e o que precisa repor.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- FEATURES -->
     <section id="recursos">
       <div class="container">
         <div class="section-title">
@@ -673,35 +616,17 @@
         </div>
 
         <div class="cards">
-          <article class="card">
-            <div class="chip"><span class="mini">🗓</span> Agenda</div>
-            <h3>Horários por profissional</h3>
-            <p>Defina dias, horários e padrões. Menos conflito, mais encaixes.</p>
-          </article>
-
-          <article class="card">
-            <div class="chip"><span class="mini">✂️</span> Serviços</div>
-            <h3>Duração e preço</h3>
-            <p>Catálogo padronizado com status ativo/inativo.</p>
-          </article>
-
-          <article class="card">
-            <div class="chip"><span class="mini">🧴</span> Produtos</div>
-            <h3>Código e preço</h3>
-            <p>Base pronta para estoque/PDV — tudo no mesmo sistema.</p>
-          </article>
+          <article class="card"><div class="chip"><span class="mini">🗓</span> Agenda</div><h3>Horários por profissional</h3><p>Defina dias, horários e padrões. Menos conflito, mais encaixes.</p></article>
+          <article class="card"><div class="chip"><span class="mini">✂️</span> Serviços</div><h3>Duração e preço</h3><p>Catálogo padronizado com status ativo/inativo.</p></article>
+          <article class="card"><div class="chip"><span class="mini">🧴</span> Produtos</div><h3>Código e preço</h3><p>Base pronta para estoque/PDV — tudo no mesmo sistema.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- PRICING -->
     <section id="planos">
       <div class="container">
         <div class="section-title">
-          <div>
-            <div class="kicker"><span>💎</span> Planos</div>
-            <h2>Uma experiência <span class="grad">magnífica</span> para sua equipe.</h2>
-          </div>
+          <div><div class="kicker"><span>💎</span> Planos</div><h2>Uma experiência <span class="grad">magnífica</span> para sua equipe.</h2></div>
         </div>
 
         <div class="pricing">
@@ -714,9 +639,7 @@
               <li><span class="bullet">✓</span><span>Cadastros básicos</span></li>
               <li><span class="bullet">✓</span><span>Suporte inicial</span></li>
             </ul>
-            <div style="margin-top:14px;">
-              <button class="btn" id="openWhatsPlan1" type="button">Falar agora</button>
-            </div>
+            <div style="margin-top:14px;"><button class="btn" id="openWhatsPlan1" type="button">Falar agora</button></div>
           </div>
 
           <div class="price-card featured">
@@ -728,62 +651,38 @@
               <li><span class="bullet">✓</span><span>Agenda por profissional + padrões</span></li>
               <li><span class="bullet">✓</span><span>Serviços com preço, duração e status</span></li>
               <li><span class="bullet">✓</span><span>Produtos e base de estoque/PDV</span></li>
-              <li><span class="bullet">✓</span><span>Clientes e histórico</span></li>
-              <li><span class="bullet">✓</span><span>Painel administrativo</span></li>
             </ul>
-            <div style="margin-top:14px;">
-              <button class="btn btn-primary pulse" id="openWhatsPlan2" type="button">Quero o Premium</button>
-            </div>
+            <div style="margin-top:14px;"><button class="btn btn-primary pulse" id="openWhatsPlan2" type="button">Quero o Premium</button></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
     <section id="faq">
       <div class="container">
         <div class="section-title">
-          <div>
-            <div class="kicker"><span>❓</span> Dúvidas</div>
-            <h2>Respostas rápidas para decidir <span class="grad">agora</span>.</h2>
-          </div>
+          <div><div class="kicker"><span>❓</span> Dúvidas</div><h2>Respostas rápidas para decidir <span class="grad">agora</span>.</h2></div>
         </div>
 
         <details>
-          <summary>As imagens não aparecem no GitHub Pages. Por quê?</summary>
-          <p>Normalmente é cache do navegador/Pages ou caminho base errado. Aqui o site monta a URL com <b>document.baseURI</b> e ainda adiciona um <b>cache-buster</b> (v=...). Isso corrige quase todos os casos.</p>
-        </details>
-
-        <details>
-          <summary>Serve para barbearia, salão e studio?</summary>
-          <p>Sim. Foi pensado para rotinas de beleza com serviços por tempo, profissionais e controle de agenda/itens.</p>
-        </details>
-
-        <details>
-          <summary>Posso trocar textos, cores e contatos?</summary>
-          <p>Sim. No final do arquivo tem uma área “CONFIG” com os números do WhatsApp e os slides.</p>
+          <summary>Por que as imagens não apareciam?</summary>
+          <p>Porque seu GitHub <b>não tem</b> pasta <b>assets</b>. Agora o site carrega as imagens direto da <b>raiz</b> (ex: <b>servicos-lista.png</b>) e usa <b>URL absoluta</b> + cache-buster.</p>
         </details>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container footergrid">
-      <div class="fine">
-        © <span id="year"></span> AgendaPRO. Todos os direitos reservados.
-      </div>
+    <div class="container">
+      <div class="tiny muted">© <span id="year"></span> AgendaPRO. Todos os direitos reservados.</div>
     </div>
   </footer>
 
-  <!-- Floating WhatsApp -->
   <div class="wa" aria-label="WhatsApp flutuante">
-    <button id="openWhatsFloat" type="button">
-      <span class="w">💬</span> WhatsApp
-    </button>
+    <button id="openWhatsFloat" type="button"><span class="w">💬</span> WhatsApp</button>
   </div>
 
-  <!-- WhatsApp Modal -->
-  <div class="modal" id="waModal" aria-hidden="true" aria-label="Escolher contato do WhatsApp" role="dialog">
+  <div class="modal" id="waModal" aria-hidden="true" role="dialog" aria-label="Escolher contato do WhatsApp">
     <div class="overlay" id="waOverlay" aria-hidden="true"></div>
     <div class="sheet" role="document">
       <div class="sheet-inner">
@@ -799,7 +698,7 @@
         <div class="options" id="waOptions"></div>
 
         <div class="tiny muted" style="margin-top:10px;">
-          Se você alterou imagens agora, pode demorar 1–3 minutos pro GitHub Pages atualizar. Tente Ctrl+F5.
+          Se você trocou imagens agora, o GitHub Pages pode demorar um pouco. Tente Ctrl+F5.
         </div>
       </div>
     </div>
@@ -807,39 +706,28 @@
 
   <script>
     // =========================================================
-    // CONFIG (edite aqui)
+    // CONFIG
     // =========================================================
 
-    // Versão para "quebrar cache" no GitHub Pages. Quando você trocar imagens, aumente para 2, 3, 4...
-    const ASSET_VERSION = 1;
+    // Aumente quando trocar imagens (força atualizar no GitHub Pages)
+    const ASSET_VERSION = 2;
 
-    // Base dos assets (padrão: assets/)
-    const ASSET_BASE = (document.querySelector('meta[name="asset-base"]')?.content || "assets/").replace(/\/?$/, "/");
+    // Como as imagens estão na RAIZ, base vazia:
+    const ASSET_BASE = (document.querySelector('meta[name="asset-base"]')?.content || "").replace(/\/?$/, "");
 
-    // Contatos WhatsApp (somente números no link wa.me)
     const WHATSAPP_CONTACTS = [
-      {
-        tag: "Consultor",
-        number: "65984685315",
-        display: "+65 9846-85315",
-        text: "Olá! Quero conhecer o AgendaPRO Premium."
-      },
-      {
-        tag: "Atendimento",
-        number: "4497280320",
-        display: "+44 9728-0320",
-        text: "Olá! Preciso de informações do AgendaPRO."
-      }
+      { tag: "Consultor",   number: "65984685315", display: "+65 9846-85315", text: "Olá! Quero conhecer o AgendaPRO Premium." },
+      { tag: "Atendimento", number: "4497280320",  display: "+44 9728-0320",  text: "Olá! Preciso de informações do AgendaPRO." }
     ];
 
-    // Slides (NOMES EXATOS dos arquivos dentro da pasta assets/)
+    // NOMES EXATOS na raiz do repositório
     const SLIDES = [
-      { file: "login.png",         kicker:"Acesso premium",       title:"Login rápido e seguro",            text:"Entrada elegante no painel administrativo. Interface limpa e futurista." },
-      { file: "servico-modal.png", kicker:"Serviços em segundos", title:"Cadastro inteligente de serviços", text:"Defina nome, duração, preço e status. Padronize seu catálogo e evite erros." },
-      { file: "servicos-lista.png",kicker:"Organização total",    title:"Lista de serviços com ações",      text:"Edite, inative ou exclua sem complicação. Visão clara do que ajustar." },
-      { file: "horarios.png",      kicker:"Agenda que trabalha",  title:"Horários por profissional",        text:"Configure disponibilidade, passo e padrões. Menos conflito, mais encaixes." },
-      { file: "produtos.png",      kicker:"Controle de operação", title:"Produtos, preços e código",        text:"Cadastre produtos com preço e código. Base pronta para estoque/PDV." },
-      { file: "menu.png",          kicker:"Painel completo",      title:"Menu inteligente e modular",       text:"Dashboard, agenda, clientes, serviços, horários, produtos e muito mais." }
+      { file: "login.png",          kicker:"Acesso premium",       title:"Login rápido e seguro",            text:"Entrada elegante no painel administrativo. Interface limpa e futurista." },
+      { file: "servico-modal.png",  kicker:"Serviços em segundos", title:"Cadastro inteligente de serviços", text:"Defina nome, duração, preço e status. Padronize seu catálogo e evite erros." },
+      { file: "servicos-lista.png", kicker:"Organização total",    title:"Lista de serviços com ações",      text:"Edite, inative ou exclua sem complicação. Visão clara do que ajustar." },
+      { file: "horarios.png",       kicker:"Agenda que trabalha",  title:"Horários por profissional",        text:"Configure disponibilidade, passo e padrões. Menos conflito, mais encaixes." },
+      { file: "produtos.png",       kicker:"Controle de operação", title:"Produtos, preços e código",        text:"Cadastre produtos com preço e código. Base pronta para estoque/PDV." },
+      { file: "menu.png",           kicker:"Painel completo",      title:"Menu inteligente e modular",       text:"Dashboard, agenda, clientes, serviços, horários, produtos e muito mais." }
     ];
 
     // =========================================================
@@ -848,11 +736,10 @@
     function cleanDigits(s){ return String(s || "").replace(/\D+/g, ""); }
 
     function buildAssetUrl(file){
-      // Monta URL ABSOLUTA usando document.baseURI (corrige GitHub Pages em subpastas)
-      const rel = ASSET_BASE + String(file || "").replace(/^\/*/, "");
+      // resolve para a raiz do site (mesmo em subpasta do GitHub Pages)
+      const rel = (ASSET_BASE ? (ASSET_BASE.replace(/\/?$/, "/")) : "") + String(file || "").replace(/^\/*/, "");
       const u = new URL(rel, document.baseURI);
-      // Cache-buster pra evitar ficar preso em versão antiga no Pages
-      u.searchParams.set("v", String(ASSET_VERSION));
+      u.searchParams.set("v", String(ASSET_VERSION)); // quebra cache
       return u.toString();
     }
 
@@ -883,12 +770,11 @@
       fallback.innerHTML = `
         <div><b>Não consegui carregar a imagem.</b></div>
         <div class="muted tiny" style="margin-top:8px;">
-          Dica: no GitHub Pages, caminho e letras contam. Verifique se o arquivo existe com o nome exato:
+          Verifique se o arquivo existe na raiz do repo com o nome exato:
         </div>
         <code>${url}</code>
       `;
     }
-
     function hideFallback(){
       fallback.classList.add("sr-only");
       fallback.classList.remove("img-fallback");
@@ -906,21 +792,18 @@
         dotsWrap.appendChild(b);
       });
     }
-
     function setDotCurrent(){
       [...dotsWrap.children].forEach((b, i) => b.setAttribute("aria-current", String(i === index)));
     }
 
     async function swapImage(url, alt){
       hideFallback();
-
       imgEl.onload = null;
       imgEl.onerror = null;
 
       imgEl.style.opacity = "0";
       imgEl.style.transform = "scale(1.03)";
 
-      // Pré-carrega para transição suave
       const pre = new Image();
       pre.decoding = "async";
       pre.src = url;
@@ -1042,7 +925,6 @@
     }
     renderContacts();
 
-    // bind opens
     ["openWhatsTop","openWhatsHero","openWhatsPlan1","openWhatsPlan2","openWhatsFloat"].forEach(id => {
       const el = document.getElementById(id);
       if(el) el.addEventListener("click", openModal);
@@ -1050,9 +932,7 @@
 
     waOverlay.addEventListener("click", closeModal);
     waClose.addEventListener("click", closeModal);
-    window.addEventListener("keydown", (e) => {
-      if(e.key === "Escape") closeModal();
-    });
+    window.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
   </script>
 </body>
 </html>
