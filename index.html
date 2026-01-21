@@ -3,20 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <base href="./" />
   <meta name="theme-color" content="#7c3aed" />
-
-  <title>AgendaPRO — Sistema premium de gestão</title>
-  <meta name="description" content="AgendaPRO é um sistema premium, moderno e intuitivo para gestão de agenda, serviços, profissionais, produtos e clientes." />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="AgendaPRO — Sistema premium de gestão" />
-  <meta property="og:description" content="Agenda inteligente, serviços, profissionais, produtos e clientes em um painel moderno e intuitivo." />
-  <meta property="og:image" content="login.png" />
-
-  <!-- Base dos assets: como suas imagens estão NA RAIZ do repositório, fica vazio -->
-  <meta name="asset-base" content="" />
-
+  <title>AgendaPRO — Sistema premium de gestão para Barbearias, Salões & Studios</title>
+  <meta name="description" content="AgendaPRO é um sistema moderno e intuitivo para gestão de agenda, serviços, profissionais, produtos e clientes — ideal para barbearias, salões, studios de lash, unhas e sobrancelhas. Teste grátis por 15 dias com tudo liberado." />
   <style>
     *,*::before,*::after{box-sizing:border-box}
     html,body{height:100%}
@@ -24,18 +14,16 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color:rgba(255,255,255,.92);
-      background:
-        radial-gradient(1100px 600px at 70% 30%, rgba(124,58,237,.18), transparent 60%),
-        radial-gradient(900px 500px at 20% 70%, rgba(16,185,129,.12), transparent 55%),
-        radial-gradient(800px 400px at 60% 85%, rgba(236,72,153,.10), transparent 60%),
-        #070712;
+      background: radial-gradient(1100px 600px at 70% 30%, rgba(124,58,237,.18), transparent 60%),
+                  radial-gradient(900px 500px at 20% 70%, rgba(16,185,129,.12), transparent 55%),
+                  radial-gradient(800px 400px at 60% 85%, rgba(236,72,153,.10), transparent 60%),
+                  #070712;
       overflow-x:hidden;
     }
     a{color:inherit;text-decoration:none}
     .container{width:min(1180px, 92vw); margin:0 auto}
     .muted{color:rgba(255,255,255,.72)}
     .tiny{font-size:12px}
-    .sr-only{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
 
     .noise{
       pointer-events:none;
@@ -97,13 +85,14 @@
       background:rgba(255,255,255,.03);
     }
     .navcta{display:flex; gap:10px; align-items:center}
+
     .btn{
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.04);
       color:white;
       padding:10px 14px;
       border-radius:14px;
-      font-weight:800;
+      font-weight:700;
       letter-spacing:.2px;
       cursor:pointer;
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
@@ -138,7 +127,7 @@
     }
     @keyframes spin{to{transform:rotate(360deg)}}
 
-    .hero{padding:68px 0 36px; position:relative}
+    .hero{padding:68px 0 36px; position:relative;}
     .hero-grid{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
@@ -226,40 +215,41 @@
       border-radius:18px;
       border:1px solid rgba(255,255,255,.10);
       overflow:hidden;
-      background:#05050d;
-      min-height: 290px;
+      background: radial-gradient(1200px 420px at 20% 15%, rgba(124,58,237,.10), transparent 55%),
+                  rgba(5,5,13,.9);
+      min-height: 320px;
       display:grid; place-items:center;
+      padding:12px;
+      cursor: zoom-in;
     }
     .slide-img img{
-      width:100%; height:100%;
-      object-fit:cover;
+      width:100%;
+      height:100%;
+      max-height:420px;
+      object-fit:contain;
       display:block;
-      transform: scale(1.01);
+      border-radius:14px;
+      transform: scale(1.00);
       filter: saturate(1.05) contrast(1.02);
-      opacity:1;
-      transition: opacity .28s ease, transform .45s ease;
     }
-    .img-fallback{
-      padding:24px;
-      text-align:center;
-      color:rgba(255,255,255,.78);
-      line-height:1.35;
-    }
-    .img-fallback code{
-      display:inline-block;
-      margin-top:10px;
-      padding:6px 10px;
-      border-radius:12px;
+    .slide-meta{display:grid; gap:8px; padding:6px 2px 2px;}
+    .slide-meta h3{margin:0; font-size:18px; letter-spacing:-.2px;}
+    .slide-meta p{margin:0; color:rgba(255,255,255,.74); line-height:1.45; font-size:14px;}
+
+    .kicker{
+      color:rgba(255,255,255,.72);
+      font-weight:800;
       border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      font-size:12px;
-      color:rgba(255,255,255,.8);
-      word-break:break-all;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      width:max-content;
     }
-    .slide-meta{display:grid; gap:8px; padding:6px 2px 2px}
-    .slide-meta h3{margin:0; font-size:18px; letter-spacing:-.2px}
-    .slide-meta p{margin:0; color:rgba(255,255,255,.74); line-height:1.45; font-size:14px}
-    .slide-controls{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px}
+
+    .slide-controls{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px;}
     .dots{display:flex; gap:8px; align-items:center}
     .dotbtn{
       width:10px; height:10px; border-radius:999px;
@@ -287,36 +277,14 @@
     }
     .iconbtn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.22)}
     .iconbtn:active{transform: scale(.98)}
-    .progress{
-      height:3px;
-      border-radius:99px;
-      background: rgba(255,255,255,.10);
-      overflow:hidden;
-      margin-top:12px;
-    }
-    .bar{
-      height:100%;
-      width:0%;
-      background: linear-gradient(90deg, rgba(124,58,237,.95), rgba(52,211,153,.9));
-      border-radius:99px;
-    }
+    .progress{height:3px; border-radius:99px; background: rgba(255,255,255,.10); overflow:hidden; margin-top:12px;}
+    .bar{height:100%; width:0%; background: linear-gradient(90deg, rgba(124,58,237,.95), rgba(52,211,153,.9)); border-radius:99px;}
 
     section{padding:40px 0}
-    .section-title{display:flex; align-items:end; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:16px}
-    .section-title h2{margin:0; font-size: clamp(22px, 2.3vw, 30px); letter-spacing:-.35px}
-    .kicker{
-      color:rgba(255,255,255,.72);
-      font-weight:800;
-      border:1px solid rgba(255,255,255,.12);
-      padding:7px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.03);
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-    }
+    .section-title{display:flex; align-items:end; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:16px;}
+    .section-title h2{margin:0; font-size: clamp(22px, 2.3vw, 30px); letter-spacing:-.35px;}
 
-    .cards{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .cards{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;}
     .card{
       border:1px solid rgba(255,255,255,.12);
       background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
@@ -327,11 +295,7 @@
       min-height:150px;
       transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
-    .card:hover{
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,.20);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-    }
+    .card:hover{transform: translateY(-2px); border-color: rgba(255,255,255,.20); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));}
     .card::before{
       content:"";
       position:absolute; inset:-2px;
@@ -362,7 +326,7 @@
       font-size:12px;
     }
 
-    .pricing{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    .pricing{display:grid; grid-template-columns: 1fr 1fr; gap:14px;}
     .price-card{
       border-radius:22px;
       border:1px solid rgba(255,255,255,.12);
@@ -371,12 +335,8 @@
       position:relative;
       overflow:hidden;
     }
-    .price-card.featured{
-      border-color: rgba(124,58,237,.45);
-      box-shadow: 0 30px 120px rgba(124,58,237,.18);
-    }
-    .price-card h3{margin:0 0 6px}
-    .price{font-size:34px; font-weight:900; letter-spacing:-.6px; margin:10px 0 8px}
+    .price-card.featured{border-color: rgba(124,58,237,.45); box-shadow: 0 30px 120px rgba(124,58,237,.18);}
+    .price{font-size:34px; font-weight:950; letter-spacing:-.6px; margin:10px 0 8px}
     .list{margin:10px 0 0; padding:0; list-style:none; display:grid; gap:10px}
     .list li{display:flex; gap:10px; align-items:flex-start; color:rgba(255,255,255,.76); line-height:1.35}
     .bullet{
@@ -388,25 +348,57 @@
       margin-top:1px;
     }
 
-    details{
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      padding:14px 14px;
-    }
+    details{border-radius:18px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); padding:14px 14px;}
     details + details{margin-top:10px}
-    summary{cursor:pointer; font-weight:900; letter-spacing:-.1px; list-style:none}
+    summary{cursor:pointer; font-weight:900; letter-spacing:-.1px; list-style:none;}
     summary::-webkit-details-marker{display:none}
     details p{margin:10px 0 0; color:rgba(255,255,255,.74); line-height:1.5}
 
-    footer{
-      border-top:1px solid rgba(255,255,255,.08);
-      padding:26px 0 34px;
-      color:rgba(255,255,255,.70);
-    }
+    footer{border-top:1px solid rgba(255,255,255,.08); padding:26px 0 34px; color:rgba(255,255,255,.70);}
+    .footergrid{display:grid; grid-template-columns: 1.2fr .8fr; gap:18px; align-items:start;}
+    .fine{color:rgba(255,255,255,.62); font-size:13px; line-height:1.55}
 
-    .wa{position:fixed; right:18px; bottom:18px; z-index:80}
-    .wa button{
+    .wa{
+      position:fixed;
+      right:18px; bottom:18px;
+      z-index:80;
+      display:grid;
+      gap:10px;
+      align-items:end;
+      justify-items:end;
+    }
+    .wa-panel{
+      display:none;
+      width:min(320px, 90vw);
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(10,10,24,.68);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 22px 70px rgba(0,0,0,.45);
+      padding:12px;
+    }
+    .wa-panel.open{display:block;}
+    .wa-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(16,185,129,.28);
+      background: rgba(16,185,129,.10);
+      font-weight:900;
+      margin-top:10px;
+    }
+    .wa-link:first-child{margin-top:0}
+    .wa-badge{
+      width:28px;height:28px;border-radius:12px;
+      display:grid;place-items:center;
+      background: rgba(16,185,129,.22);
+      border:1px solid rgba(16,185,129,.35);
+      flex:0 0 auto;
+    }
+    .wa-toggle{
       display:inline-flex; align-items:center; gap:10px;
       padding:12px 14px;
       border-radius:999px;
@@ -414,89 +406,20 @@
       border:1px solid rgba(16,185,129,.35);
       box-shadow: 0 22px 70px rgba(0,0,0,.45);
       backdrop-filter: blur(10px);
-      font-weight:900;
-      color:white;
+      font-weight:950;
       cursor:pointer;
+      user-select:none;
     }
-    .wa button:hover{transform: translateY(-1px)}
-    .wa .w{
-      width:24px;height:24px;border-radius:10px;
-      display:grid; place-items:center;
-      background: rgba(16,185,129,.22);
-      border:1px solid rgba(16,185,129,.35)
-    }
-
-    .modal{
-      position:fixed; inset:0;
-      display:none;
-      align-items:center; justify-content:center;
-      padding:18px;
-      z-index:90;
-    }
-    .modal[aria-hidden="false"]{display:flex}
-    .overlay{
-      position:absolute; inset:0;
-      background: rgba(0,0,0,.58);
-      backdrop-filter: blur(6px);
-    }
-    .sheet{
-      position:relative;
-      width:min(520px, 94vw);
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.14);
-      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
-      box-shadow: 0 40px 140px rgba(0,0,0,.55);
-      overflow:hidden;
-    }
-    .sheet::before{
-      content:"";
-      position:absolute; inset:-1px;
-      background: radial-gradient(700px 240px at 20% 10%, rgba(124,58,237,.34), transparent 60%),
-                  radial-gradient(650px 260px at 90% 85%, rgba(16,185,129,.22), transparent 60%);
-      opacity:.6;
-      pointer-events:none;
-    }
-    .sheet-inner{position:relative; padding:16px}
-    .sheet-top{display:flex; align-items:flex-start; justify-content:space-between; gap:12px}
-    .sheet-top h3{margin:0; font-size:18px; letter-spacing:-.2px}
-    .x{
-      width:42px;height:42px;border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color:white; cursor:pointer;
-    }
-    .x:hover{background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.22)}
-    .options{display:grid; gap:10px; margin-top:12px}
-    .opt{
-      width:100%;
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      padding:12px 12px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      cursor:pointer;
-      color:white;
-      text-align:left;
-    }
-    .opt:hover{background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.22)}
-    .opt .left{display:grid; gap:2px}
-    .opt .title{font-weight:950}
-    .opt .num{font-size:12px; color:rgba(255,255,255,.70)}
-    .tag{
-      font-size:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(16,185,129,.30);
-      background: rgba(16,185,129,.14);
-      font-weight:900;
-    }
+    .wa-toggle:hover{transform: translateY(-1px)}
+    .wa-toggle .w{width:24px;height:24px;border-radius:10px; display:grid; place-items:center; background: rgba(16,185,129,.22); border:1px solid rgba(16,185,129,.35)}
 
     @media (max-width: 980px){
-      .hero-grid{grid-template-columns:1fr}
+      .hero-grid{grid-template-columns:1fr;}
       .cards{grid-template-columns: 1fr}
       .pricing{grid-template-columns:1fr}
       .navlinks{display:none}
-      .slide-img{min-height:240px}
+      .slide-img{min-height:260px}
+      .slide-img img{max-height:360px}
     }
   </style>
 </head>
@@ -513,20 +436,20 @@
             <div style="font-size:15px;">Agenda<span class="grad">PRO</span></div>
             <div class="tiny muted">Premium • Magnífico</div>
           </div>
-          <div class="tiny muted" style="margin-top:1px;">Sistema de gestão para beleza</div>
+          <div class="tiny muted" style="margin-top:1px;">Sistema de gestão para barbearias, salões e studios</div>
         </div>
       </a>
 
       <nav class="navlinks" aria-label="Navegação">
         <a href="#beneficios">Benefícios</a>
         <a href="#recursos">Recursos</a>
-        <a href="#planos">Planos</a>
+        <a href="#planos">Preço</a>
         <a href="#faq">FAQ</a>
       </nav>
 
       <div class="navcta">
-        <a class="btn" href="#demo">Ver demo</a>
-        <button class="btn btn-primary pulse" id="openWhatsTop" type="button">Falar no WhatsApp</button>
+        <a class="btn" href="#demo">Ver telas</a>
+        <a class="btn btn-primary pulse" href="#contato">Falar com a LEP</a>
       </div>
     </div>
   </header>
@@ -535,55 +458,62 @@
     <div class="container hero">
       <div class="hero-grid">
         <div>
-          <div class="badge"><span class="dot"></span> LANÇAMENTO • Futuro da gestão</div>
+          <div class="badge"><span class="dot"></span> LANÇAMENTO • Tecnologia que eleva seu atendimento</div>
           <h1>
             Agenda<span class="grad">PRO</span>:
-            o sistema <span class="grad">premium</span> que organiza tudo
-            e <span class="grad">acelera</span> seu atendimento.
+            gestão <span class="grad">moderna</span> para quem quer
+            <span class="grad">organização</span> e <span class="grad">crescimento</span>.
           </h1>
           <p class="sub">
-            Agenda inteligente, serviços, profissionais, produtos e histórico — em um painel moderno e intuitivo.
-            Sem bagunça. Sem retrabalho. Só resultado.
+            Para <b>Barbearias</b>, <b>Salões</b>, <b>Studios de Lash</b>, <b>Unhas</b> e <b>Sobrancelhas</b>.
+            Um painel intuitivo que conecta <b>agenda</b>, <b>serviços</b>, <b>profissionais</b>, <b>produtos</b> e <b>clientes</b>
+            em um fluxo rápido e lindo.
           </p>
 
           <div class="hero-ctas">
-            <button class="btn btn-primary pulse" id="openWhatsHero" type="button">Quero falar com um consultor</button>
-            <a class="btn" href="#recursos">Explorar recursos</a>
+            <a class="btn btn-primary pulse" href="#planos">Teste grátis 15 dias</a>
+            <a class="btn" href="#recursos">Ver benefícios</a>
           </div>
 
           <div class="mini-proof">
-            <span class="pill"><span class="check">✓</span> Interface moderna</span>
-            <span class="pill"><span class="check">✓</span> Fluxo rápido</span>
-            <span class="pill"><span class="check">✓</span> Controle total</span>
+            <span class="pill"><span class="check">✓</span> 15 dias grátis (tudo liberado)</span>
+            <span class="pill"><span class="check">✓</span> Interface premium</span>
+            <span class="pill"><span class="check">✓</span> Fácil de usar</span>
+            <span class="pill"><span class="check">✓</span> Suporte LEP</span>
           </div>
         </div>
 
         <div class="showcase" id="demo" aria-label="Demonstração do sistema">
           <div class="showcase-inner">
-            <div class="slide-img" id="slideBox">
-              <img id="slideImage" src="login.png" alt="Tela do AgendaPRO" loading="eager" decoding="async">
-              <div class="img-fallback sr-only" id="imgFallback" aria-live="polite"></div>
+            <div class="slide-img" title="Clique para abrir a imagem inteira">
+              <img id="slideImage" src="assets/login.png" alt="Tela do AgendaPRO" loading="eager">
             </div>
 
             <div class="slide-meta">
               <div class="kicker"><span>⚡</span><span id="slideKicker">Acesso premium</span></div>
               <h3 id="slideTitle">Login rápido e seguro</h3>
-              <p id="slideText">Entre no painel e tenha tudo organizado em segundos — com visual elegante e foco no que importa.</p>
+              <p id="slideText">
+                Entre no painel e tenha tudo organizado em segundos — com visual elegante e foco no que importa: atendimento e gestão.
+              </p>
 
               <div class="slide-controls" aria-label="Controles do carrossel">
                 <div class="dots" id="dots"></div>
                 <div class="ctrls">
-                  <button class="iconbtn" id="prev" aria-label="Anterior" type="button">‹</button>
-                  <button class="iconbtn" id="next" aria-label="Próximo" type="button">›</button>
+                  <button class="iconbtn" id="prev" aria-label="Anterior">‹</button>
+                  <button class="iconbtn" id="next" aria-label="Próximo">›</button>
                 </div>
               </div>
 
-              <div class="progress" aria-hidden="true"><div class="bar" id="bar"></div></div>
-              <div class="tiny muted" style="margin-top:8px;">Troca automática. Passe o mouse para pausar. Clique nos pontos para escolher a tela.</div>
+              <div class="progress" aria-hidden="true">
+                <div class="bar" id="bar"></div>
+              </div>
+
+              <div class="tiny muted" style="margin-top:8px;">
+                Troca automática. Passe o mouse para pausar. Clique nos pontos para escolher a tela.
+              </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -591,16 +521,48 @@
       <div class="container">
         <div class="section-title">
           <div>
-            <div class="kicker"><span>🧠</span> O que resolve</div>
-            <h2>Chega de bagunça: vire <span class="grad">máquina</span> de atendimento.</h2>
+            <div class="kicker"><span>🧠</span> O que o AgendaPRO resolve</div>
+            <h2>Mais clareza, menos bagunça — <span class="grad">produção lá em cima</span>.</h2>
           </div>
-          <div class="muted tiny">Feito para rotina real.</div>
+          <div class="muted tiny">Pensado para rotina real do salão e da barbearia.</div>
         </div>
 
         <div class="cards">
-          <article class="card"><div class="chip"><span class="mini">⏱</span> Velocidade</div><h3>Atendimento mais rápido</h3><p>Cadastros e ações em poucos cliques. Menos “vai e volta”, mais cliente atendido.</p></article>
-          <article class="card"><div class="chip"><span class="mini">🧾</span> Organização</div><h3>Agenda + Serviços + Profissionais</h3><p>Tudo conectado: serviço, duração, preço, profissional e horários — sem confusão.</p></article>
-          <article class="card"><div class="chip"><span class="mini">📦</span> Controle</div><h3>Produtos e estoque</h3><p>Cadastro com preço e código. Visão clara do que entra, sai e o que precisa repor.</p></article>
+          <article class="card">
+            <div class="chip"><span class="mini">⏱</span> Velocidade</div>
+            <h3>Atendimento mais rápido</h3>
+            <p>Cadastros e ações em poucos cliques. Menos “vai e volta”, mais cliente atendido por dia.</p>
+          </article>
+
+          <article class="card">
+            <div class="chip"><span class="mini">🧾</span> Organização</div>
+            <h3>Agenda + Serviços + Profissionais</h3>
+            <p>Serviço, duração, preço, profissional e horários conectados — sem confusão e sem retrabalho.</p>
+          </article>
+
+          <article class="card">
+            <div class="chip"><span class="mini">📦</span> Controle</div>
+            <h3>Produtos e itens sob controle</h3>
+            <p>Cadastre produtos com preço/código e acompanhe o que gira mais. Operação mais profissional.</p>
+          </article>
+
+          <article class="card">
+            <div class="chip"><span class="mini">💬</span> Fidelização</div>
+            <h3>Clientes e histórico</h3>
+            <p>Você entende o cliente e o que ele faz com você. Melhor experiência = mais retorno.</p>
+          </article>
+
+          <article class="card">
+            <div class="chip"><span class="mini">🔒</span> Segurança</div>
+            <h3>Segurança para você e seus clientes</h3>
+            <p><b>Segurança 100%:</b> proteção dos dados do empresário e dos clientes, com controle por perfil e acesso organizado.</p>
+          </article>
+
+          <article class="card">
+            <div class="chip"><span class="mini">✨</span> Premium</div>
+            <h3>Visual tecnológico (uau)</h3>
+            <p>Uma experiência moderna e intuitiva — o tipo de sistema que passa confiança desde o primeiro clique.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -610,15 +572,29 @@
         <div class="section-title">
           <div>
             <div class="kicker"><span>🚀</span> Recursos</div>
-            <h2>Um painel completo para <span class="grad">dominar</span> a operação.</h2>
+            <h2>Um painel completo para <span class="grad">agenda</span> e <span class="grad">gestão</span>.</h2>
           </div>
           <div class="muted tiny">Automatizado. Intuitivo. Bonito.</div>
         </div>
 
         <div class="cards">
-          <article class="card"><div class="chip"><span class="mini">🗓</span> Agenda</div><h3>Horários por profissional</h3><p>Defina dias, horários e padrões. Menos conflito, mais encaixes.</p></article>
-          <article class="card"><div class="chip"><span class="mini">✂️</span> Serviços</div><h3>Duração e preço</h3><p>Catálogo padronizado com status ativo/inativo.</p></article>
-          <article class="card"><div class="chip"><span class="mini">🧴</span> Produtos</div><h3>Código e preço</h3><p>Base pronta para estoque/PDV — tudo no mesmo sistema.</p></article>
+          <article class="card">
+            <div class="chip"><span class="mini">🗓</span> Horários</div>
+            <h3>Disponibilidade por profissional</h3>
+            <p>Defina dias, horários, passo (ex: 45 min) e aplique padrões. Menos erro, mais encaixe.</p>
+          </article>
+
+          <article class="card">
+            <div class="chip"><span class="mini">✂️</span> Serviços</div>
+            <h3>Catálogo com preço e duração</h3>
+            <p>Cadastre serviços e mantenha tudo padronizado. Ativo/inativo, edição rápida e controle.</p>
+          </article>
+
+          <article class="card">
+            <div class="chip"><span class="mini">🧴</span> Produtos</div>
+            <h3>Preço + código (base para PDV)</h3>
+            <p>Cadastre produtos (bebidas, itens etc.) com preço e código — pronto para crescer com controle.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -626,33 +602,43 @@
     <section id="planos">
       <div class="container">
         <div class="section-title">
-          <div><div class="kicker"><span>💎</span> Planos</div><h2>Uma experiência <span class="grad">magnífica</span> para sua equipe.</h2></div>
+          <div>
+            <div class="kicker"><span>💎</span> Preço</div>
+            <h2>Teste grátis <span class="grad">15 dias</span> com tudo liberado.</h2>
+          </div>
+          <div class="muted tiny">Depois do teste, você escolhe se continua.</div>
         </div>
 
         <div class="pricing">
           <div class="price-card">
-            <h3 class="muted">Starter</h3>
-            <div class="price">R$ 0<span class="tiny muted">/teste</span></div>
-            <div class="muted">Perfeito para conhecer o fluxo.</div>
+            <h3 class="muted">Teste grátis</h3>
+            <div class="price">15<span class="tiny muted"> dias</span></div>
+            <div class="muted">Acesso completo para você validar o sistema no seu dia a dia.</div>
             <ul class="list">
-              <li><span class="bullet">✓</span><span>Visão geral do painel</span></li>
-              <li><span class="bullet">✓</span><span>Cadastros básicos</span></li>
-              <li><span class="bullet">✓</span><span>Suporte inicial</span></li>
+              <li><span class="bullet">✓</span><span><b>Tudo liberado</b> (igual ao plano pago)</span></li>
+              <li><span class="bullet">✓</span><span>Agenda, serviços, profissionais e clientes</span></li>
+              <li><span class="bullet">✓</span><span>Produtos e base para estoque/PDV</span></li>
+              <li><span class="bullet">✓</span><span>Suporte para começar</span></li>
             </ul>
-            <div style="margin-top:14px;"><button class="btn" id="openWhatsPlan1" type="button">Falar agora</button></div>
+            <div style="margin-top:14px;">
+              <a class="btn" href="#contato">Quero testar</a>
+            </div>
           </div>
 
           <div class="price-card featured">
-            <div class="kicker" style="width:max-content;"><span>🔥</span> Recomendado</div>
-            <h3>AgendaPRO Premium</h3>
-            <div class="price">R$ 97<span class="tiny muted">/mês</span></div>
-            <div class="muted">Tudo liberado para operação completa.</div>
+            <div class="kicker"><span>🔥</span> Plano Mensal</div>
+            <h3>AgendaPRO</h3>
+            <div class="price">R$ 70<span class="tiny muted">/mês</span></div>
+            <div class="muted">Continua com tudo completo, rodando liso e com suporte.</div>
             <ul class="list">
-              <li><span class="bullet">✓</span><span>Agenda por profissional + padrões</span></li>
-              <li><span class="bullet">✓</span><span>Serviços com preço, duração e status</span></li>
-              <li><span class="bullet">✓</span><span>Produtos e base de estoque/PDV</span></li>
+              <li><span class="bullet">✓</span><span>Todos os recursos do teste</span></li>
+              <li><span class="bullet">✓</span><span>Atualizações e melhorias</span></li>
+              <li><span class="bullet">✓</span><span>Atendimento e acompanhamento</span></li>
+              <li><span class="bullet">✓</span><span>Segurança e organização de dados</span></li>
             </ul>
-            <div style="margin-top:14px;"><button class="btn btn-primary pulse" id="openWhatsPlan2" type="button">Quero o Premium</button></div>
+            <div style="margin-top:14px;">
+              <a class="btn btn-primary pulse" href="#contato">Falar agora</a>
+            </div>
           </div>
         </div>
       </div>
@@ -661,101 +647,154 @@
     <section id="faq">
       <div class="container">
         <div class="section-title">
-          <div><div class="kicker"><span>❓</span> Dúvidas</div><h2>Respostas rápidas para decidir <span class="grad">agora</span>.</h2></div>
+          <div>
+            <div class="kicker"><span>❓</span> FAQ</div>
+            <h2>Dúvidas rápidas para decidir <span class="grad">sem enrolação</span>.</h2>
+          </div>
         </div>
 
         <details>
-          <summary>Por que as imagens não apareciam?</summary>
-          <p>Porque seu GitHub <b>não tem</b> pasta <b>assets</b>. Agora o site carrega as imagens direto da <b>raiz</b> (ex: <b>servicos-lista.png</b>) e usa <b>URL absoluta</b> + cache-buster.</p>
+          <summary>Serve para barbearia, salão e studio (lash/unhas/sobrancelhas)?</summary>
+          <p>Sim. O AgendaPRO foi pensado para rotina de beleza, com serviços por tempo, profissionais, agenda e controle do dia a dia.</p>
         </details>
+
+        <details>
+          <summary>O teste grátis libera tudo mesmo?</summary>
+          <p>Sim. São <b>15 dias</b> com todos os recursos liberados, para você testar com sua equipe e ver o resultado na prática.</p>
+        </details>
+
+        <details>
+          <summary>Como funciona a segurança dos dados?</summary>
+          <p>O AgendaPRO trabalha com acesso organizado e controle por perfil, ajudando a proteger dados do empresário e dos clientes durante a operação.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <div class="kicker"><span>📲</span> Contato</div>
+            <h2>Fale com a <span class="grad">LEP Solução Empresarial</span></h2>
+            <div class="muted">Dois contatos disponíveis para você chamar agora.</div>
+          </div>
+        </div>
+
+        <div class="showcase" style="padding:18px;">
+          <div class="showcase-inner" style="grid-template-columns:1fr; gap:10px;">
+            <div class="muted" style="line-height:1.65">
+              <b>AgendaPRO</b> é uma solução moderna para elevar sua gestão e colocar sua operação no nível profissional.
+              <br/>Clique em um dos números abaixo e fale no WhatsApp:
+            </div>
+            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;">
+              <a class="btn btn-primary pulse" id="btnWhats1" href="#" target="_blank" rel="noopener">WhatsApp 1 • 65 98468-5315</a>
+              <a class="btn" id="btnWhats2" href="#" target="_blank" rel="noopener">WhatsApp 2 • 44 9728-0320</a>
+            </div>
+            <div class="tiny muted">
+              Desenvolvedora: <b>LEP Solução Empresarial</b> • © <span id="year"></span> AgendaPRO
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container">
-      <div class="tiny muted">© <span id="year"></span> AgendaPRO. Todos os direitos reservados.</div>
+    <div class="container footergrid">
+      <div>
+        <div class="brand" style="margin-bottom:10px;">
+          <div class="logo" aria-hidden="true"><span>AP</span></div>
+          <div>
+            <div style="font-size:15px;font-weight:950;">Agenda<span class="grad">PRO</span></div>
+            <div class="tiny muted">Premium • Magnífico</div>
+          </div>
+        </div>
+        <div class="fine">
+          Sistema completo para gestão de agenda e operação de barbearias, salões e studios.
+          <br/>Desenvolvedora: <b>LEP Solução Empresarial</b>.
+        </div>
+      </div>
+      <div>
+        <div class="fine">
+          Contatos:
+          <br/><b>WhatsApp 1:</b> 65 98468-5315
+          <br/><b>WhatsApp 2:</b> 44 9728-0320
+        </div>
+      </div>
     </div>
   </footer>
 
   <div class="wa" aria-label="WhatsApp flutuante">
-    <button id="openWhatsFloat" type="button"><span class="w">💬</span> WhatsApp</button>
-  </div>
+    <div class="wa-panel" id="waPanel">
+      <div class="tiny muted">Escolha um contato:</div>
+      <a class="wa-link" id="wa1" href="#" target="_blank" rel="noopener">
+        <span style="display:flex;align-items:center;gap:10px;">
+          <span class="wa-badge">💬</span>
+          <span>WhatsApp 1<br><span class="tiny muted">65 98468-5315</span></span>
+        </span>
+        <span>›</span>
+      </a>
+      <a class="wa-link" id="wa2" href="#" target="_blank" rel="noopener">
+        <span style="display:flex;align-items:center;gap:10px;">
+          <span class="wa-badge">💬</span>
+          <span>WhatsApp 2<br><span class="tiny muted">44 9728-0320</span></span>
+        </span>
+        <span>›</span>
+      </a>
+    </div>
 
-  <div class="modal" id="waModal" aria-hidden="true" role="dialog" aria-label="Escolher contato do WhatsApp">
-    <div class="overlay" id="waOverlay" aria-hidden="true"></div>
-    <div class="sheet" role="document">
-      <div class="sheet-inner">
-        <div class="sheet-top">
-          <div>
-            <div class="kicker"><span>📲</span> Contatos</div>
-            <h3>Escolha com quem falar</h3>
-            <div class="tiny muted" style="margin-top:4px;">Abre direto no WhatsApp com mensagem pronta.</div>
-          </div>
-          <button class="x" id="waClose" type="button" aria-label="Fechar">✕</button>
-        </div>
-
-        <div class="options" id="waOptions"></div>
-
-        <div class="tiny muted" style="margin-top:10px;">
-          Se você trocou imagens agora, o GitHub Pages pode demorar um pouco. Tente Ctrl+F5.
-        </div>
-      </div>
+    <div class="wa-toggle" id="waToggle" role="button" aria-label="Abrir contatos do WhatsApp" tabindex="0">
+      <span class="w">💬</span> WhatsApp
     </div>
   </div>
 
+  <div id="lightbox" style="display:none; position:fixed; inset:0; z-index:120; background:rgba(0,0,0,.72);">
+    <div style="position:absolute; inset:18px; display:grid; place-items:center;">
+      <img id="lightboxImg" alt="Imagem do sistema" style="max-width:100%; max-height:100%; border-radius:16px; border:1px solid rgba(255,255,255,.12); background:rgba(10,10,24,.6);" />
+    </div>
+    <button id="lightboxClose" class="iconbtn" style="position:fixed; top:18px; right:18px;">✕</button>
+  </div>
+
   <script>
-    // =========================================================
-    // CONFIG
-    // =========================================================
-
-    // Aumente quando trocar imagens (força atualizar no GitHub Pages)
-    const ASSET_VERSION = 2;
-
-    // Como as imagens estão na RAIZ, base vazia:
-    const ASSET_BASE = (document.querySelector('meta[name="asset-base"]')?.content || "").replace(/\/?$/, "");
-
-    const WHATSAPP_CONTACTS = [
-      { tag: "Consultor",   number: "65984685315", display: "+65 9846-85315", text: "Olá! Quero conhecer o AgendaPRO Premium." },
-      { tag: "Atendimento", number: "4497280320",  display: "+44 9728-0320",  text: "Olá! Preciso de informações do AgendaPRO." }
+    const slides = [
+      { img: "assets/login.png", kicker: "Acesso premium", title: "Login rápido e seguro",
+        text: "Entrada elegante no painel administrativo, com visual futurista e navegação simples — pronto para começar sem complicação." },
+      { img: "assets/servico-modal.png", kicker: "Serviços em segundos", title: "Cadastro inteligente de serviços",
+        text: "Defina nome, duração, preço e status (ativo/inativo). Padronize o atendimento e evite erro de cobrança e tempo." },
+      { img: "assets/servicos-lista.png", kicker: "Organização total", title: "Serviços com ações rápidas",
+        text: "Edite, inative ou exclua com segurança. Catálogo sempre alinhado com o que sua equipe realmente executa." },
+      { img: "assets/horarios.png", kicker: "Agenda que trabalha", title: "Horários por profissional",
+        text: "Configure disponibilidade e passo (ex: 45 min). Menos conflitos, mais encaixes e previsibilidade para sua equipe." },
+      { img: "assets/produtos.png", kicker: "Controle de operação", title: "Produtos com preço e código",
+        text: "Cadastro rápido de produtos (bebidas, itens, etc.). Base pronta para evoluir com estoque e PDV quando você quiser." },
+      { img: "assets/menu.png", kicker: "Painel completo", title: "Tudo em um só lugar",
+        text: "Dashboard, agenda, histórico, clientes, profissionais, serviços, horários, produtos e mais — gestão completa sem perder tempo." }
     ];
 
-    // NOMES EXATOS na raiz do repositório
-    const SLIDES = [
-      { file: "login.png",          kicker:"Acesso premium",       title:"Login rápido e seguro",            text:"Entrada elegante no painel administrativo. Interface limpa e futurista." },
-      { file: "servico-modal.png",  kicker:"Serviços em segundos", title:"Cadastro inteligente de serviços", text:"Defina nome, duração, preço e status. Padronize seu catálogo e evite erros." },
-      { file: "servicos-lista.png", kicker:"Organização total",    title:"Lista de serviços com ações",      text:"Edite, inative ou exclua sem complicação. Visão clara do que ajustar." },
-      { file: "horarios.png",       kicker:"Agenda que trabalha",  title:"Horários por profissional",        text:"Configure disponibilidade, passo e padrões. Menos conflito, mais encaixes." },
-      { file: "produtos.png",       kicker:"Controle de operação", title:"Produtos, preços e código",        text:"Cadastre produtos com preço e código. Base pronta para estoque/PDV." },
-      { file: "menu.png",           kicker:"Painel completo",      title:"Menu inteligente e modular",       text:"Dashboard, agenda, clientes, serviços, horários, produtos e muito mais." }
-    ];
-
-    // =========================================================
-    // HELPERS
-    // =========================================================
-    function cleanDigits(s){ return String(s || "").replace(/\D+/g, ""); }
-
-    function buildAssetUrl(file){
-      // resolve para a raiz do site (mesmo em subpasta do GitHub Pages)
-      const rel = (ASSET_BASE ? (ASSET_BASE.replace(/\/?$/, "/")) : "") + String(file || "").replace(/^\/*/, "");
-      const u = new URL(rel, document.baseURI);
-      u.searchParams.set("v", String(ASSET_VERSION)); // quebra cache
-      return u.toString();
+    function normalizePath(p){ return String(p || "").replace(/^\.?\//, ""); }
+    function withAssets(p){ const n = normalizePath(p); return n.startsWith("assets/") ? n : ("assets/" + n); }
+    function withoutAssets(p){ return normalizePath(p).replace(/^assets\//, ""); }
+    async function exists(url){
+      try{ const res = await fetch(url, { method:"HEAD", cache:"no-cache" }); return res.ok; }
+      catch(_){ return false; }
+    }
+    async function resolveImg(path){
+      const a = withAssets(path);
+      if(await exists(a)) return a;
+      const b = withoutAssets(path);
+      if(await exists(b)) return b;
+      return path;
     }
 
-    // =========================================================
-    // CAROUSEL
-    // =========================================================
     const imgEl = document.getElementById("slideImage");
-    const fallback = document.getElementById("imgFallback");
     const kickerEl = document.getElementById("slideKicker");
-    const titleEl  = document.getElementById("slideTitle");
-    const textEl   = document.getElementById("slideText");
+    const titleEl = document.getElementById("slideTitle");
+    const textEl = document.getElementById("slideText");
     const dotsWrap = document.getElementById("dots");
-    const prevBtn  = document.getElementById("prev");
-    const nextBtn  = document.getElementById("next");
-    const bar      = document.getElementById("bar");
-    const year     = document.getElementById("year");
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
+    const bar = document.getElementById("bar");
+    const year = document.getElementById("year");
     year.textContent = new Date().getFullYear();
 
     let index = 0;
@@ -764,78 +803,42 @@
     let paused = false;
     let startTs = performance.now();
 
-    function showFallback(url){
-      fallback.classList.remove("sr-only");
-      fallback.classList.add("img-fallback");
-      fallback.innerHTML = `
-        <div><b>Não consegui carregar a imagem.</b></div>
-        <div class="muted tiny" style="margin-top:8px;">
-          Verifique se o arquivo existe na raiz do repo com o nome exato:
-        </div>
-        <code>${url}</code>
-      `;
-    }
-    function hideFallback(){
-      fallback.classList.add("sr-only");
-      fallback.classList.remove("img-fallback");
-      fallback.innerHTML = "";
-    }
-
     function renderDots(){
       dotsWrap.innerHTML = "";
-      SLIDES.forEach((_, i) => {
+      slides.forEach((_, i) => {
         const b = document.createElement("button");
         b.className = "dotbtn";
-        b.type = "button";
         b.setAttribute("aria-label", "Ir para slide " + (i+1));
         b.addEventListener("click", () => goTo(i, true));
         dotsWrap.appendChild(b);
       });
     }
-    function setDotCurrent(){
-      [...dotsWrap.children].forEach((b, i) => b.setAttribute("aria-current", String(i === index)));
-    }
-
-    async function swapImage(url, alt){
-      hideFallback();
-      imgEl.onload = null;
-      imgEl.onerror = null;
-
-      imgEl.style.opacity = "0";
-      imgEl.style.transform = "scale(1.03)";
-
-      const pre = new Image();
-      pre.decoding = "async";
-      pre.src = url;
-
-      try{ if(pre.decode) await pre.decode(); } catch(_e){}
-
-      imgEl.onerror = () => showFallback(url);
-      imgEl.onload  = () => {
-        imgEl.style.opacity = "1";
-        imgEl.style.transform = "scale(1.01)";
-      };
-
-      imgEl.src = url;
-      imgEl.alt = alt || "Tela do sistema";
-    }
+    function setDotCurrent(){ [...dotsWrap.children].forEach((b, i) => b.setAttribute("aria-current", String(i === index))); }
 
     function goTo(i, resetProgress=false){
-      index = (i + SLIDES.length) % SLIDES.length;
-      const s = SLIDES[index];
+      index = (i + slides.length) % slides.length;
+      const s = slides[index];
 
-      kickerEl.textContent = s.kicker;
-      titleEl.textContent  = s.title;
-      textEl.textContent   = s.text;
+      imgEl.style.opacity = "0";
+      imgEl.style.transform = "scale(1.00)";
 
-      const url = buildAssetUrl(s.file);
-      swapImage(url, s.title);
+      setTimeout(async () => {
+        const resolved = await resolveImg(s.img);
+        imgEl.src = resolved;
+        imgEl.alt = s.title;
+        kickerEl.textContent = s.kicker;
+        titleEl.textContent = s.title;
+        textEl.textContent = s.text;
+
+        imgEl.onload = () => {
+          imgEl.style.transition = "opacity .25s ease, transform .45s ease";
+          imgEl.style.opacity = "1";
+          imgEl.style.transform = "scale(1.00)";
+        };
+      }, 120);
 
       setDotCurrent();
-      if(resetProgress){
-        startTs = performance.now();
-        bar.style.width = "0%";
-      }
+      if(resetProgress){ startTs = performance.now(); bar.style.width = "0%"; }
     }
 
     function next(){ goTo(index + 1, true); }
@@ -846,12 +849,8 @@
       const now = performance.now();
       const p = Math.min(1, (now - startTs) / intervalMs);
       bar.style.width = (p * 100).toFixed(1) + "%";
-      if(p >= 1){
-        startTs = now;
-        next();
-      }
+      if(p >= 1){ startTs = now; next(); }
     }
-
     function start(){
       if(timer) clearInterval(timer);
       timer = setInterval(tick, 50);
@@ -868,7 +867,6 @@
     goTo(0, true);
     start();
 
-    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener("click", (e) => {
         const href = a.getAttribute("href");
@@ -881,58 +879,40 @@
       });
     });
 
-    // =========================================================
-    // WHATSAPP MODAL (2 opções)
-    // =========================================================
-    const waModal   = document.getElementById("waModal");
-    const waOverlay = document.getElementById("waOverlay");
-    const waClose   = document.getElementById("waClose");
-    const waOptions = document.getElementById("waOptions");
+    const WHATS_1 = "5565984685315";
+    const WHATS_2 = "5544997280320";
+    const WHATS_TEXT = "Quero testar o AgendaPRO por 15 dias (tudo liberado).";
 
-    function openModal(){
-      waModal.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-    }
-    function closeModal(){
-      waModal.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-    }
+    const waUrl1 = `https://wa.me/${WHATS_1}?text=${encodeURIComponent(WHATS_TEXT)}`;
+    const waUrl2 = `https://wa.me/${WHATS_2}?text=${encodeURIComponent(WHATS_TEXT)}`;
 
-    function buildWaUrl(number, text){
-      const digits = cleanDigits(number);
-      return `https://wa.me/${digits}?text=${encodeURIComponent(text || "")}`;
-    }
+    document.getElementById("btnWhats1").href = waUrl1;
+    document.getElementById("btnWhats2").href = waUrl2;
+    document.getElementById("wa1").href = waUrl1;
+    document.getElementById("wa2").href = waUrl2;
 
-    function renderContacts(){
-      waOptions.innerHTML = "";
-      WHATSAPP_CONTACTS.forEach(c => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "opt";
-        btn.innerHTML = `
-          <div class="left">
-            <div class="title">${c.tag}</div>
-            <div class="num">${c.display || c.number}</div>
-          </div>
-          <div class="tag">Abrir</div>
-        `;
-        btn.addEventListener("click", () => {
-          window.open(buildWaUrl(c.number, c.text), "_blank", "noopener");
-          closeModal();
-        });
-        waOptions.appendChild(btn);
-      });
-    }
-    renderContacts();
-
-    ["openWhatsTop","openWhatsHero","openWhatsPlan1","openWhatsPlan2","openWhatsFloat"].forEach(id => {
-      const el = document.getElementById(id);
-      if(el) el.addEventListener("click", openModal);
+    const waToggle = document.getElementById("waToggle");
+    const waPanel = document.getElementById("waPanel");
+    function togglePanel(){ waPanel.classList.toggle("open"); }
+    waToggle.addEventListener("click", togglePanel);
+    waToggle.addEventListener("keydown", (e) => {
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); togglePanel(); }
     });
+    document.addEventListener("click", (e) => { if(!e.target.closest(".wa")) waPanel.classList.remove("open"); });
 
-    waOverlay.addEventListener("click", closeModal);
-    waClose.addEventListener("click", closeModal);
-    window.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxClose = document.getElementById("lightboxClose");
+
+    document.querySelector(".slide-img").addEventListener("click", async () => {
+      const url = await resolveImg(slides[index].img);
+      lightboxImg.src = url;
+      lightbox.style.display = "block";
+    });
+    function closeLightbox(){ lightbox.style.display = "none"; }
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (e) => { if(e.target === lightbox) closeLightbox(); });
+    document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeLightbox(); });
   </script>
 </body>
 </html>
