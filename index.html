@@ -367,6 +367,50 @@
       .slide-img{min-height:260px}
       .slide-img img{max-height:360px}
     }
+  
+    /* Oferta de lançamento */
+    .offer-banner{
+      border-radius:22px;
+      border:1px solid rgba(124,58,237,.40);
+      background: radial-gradient(700px 220px at 15% 20%, rgba(124,58,237,.28), transparent 60%),
+                  radial-gradient(620px 220px at 85% 80%, rgba(16,185,129,.18), transparent 60%),
+                  rgba(255,255,255,.03);
+      padding:16px;
+      margin: 14px 0 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .offer-banner::after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: conic-gradient(from 200deg, transparent, rgba(255,255,255,.18), transparent 60%);
+      animation: spin 9s linear infinite;
+      opacity:.35;
+      pointer-events:none;
+    }
+    .offer-grid{position:relative; display:grid; grid-template-columns: 1.1fr .9fr; gap:14px; align-items:center;}
+    .offer-title{margin:0; font-weight:950; letter-spacing:-.35px; font-size:18px;}
+    .offer-sub{margin:6px 0 0; color:rgba(255,255,255,.74); line-height:1.45; font-size:14px;}
+    .offer-badges{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
+    .offer-badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      font-weight:900;
+      letter-spacing:.2px;
+      font-size:12px;
+      color:rgba(255,255,255,.86);
+      white-space:nowrap;
+    }
+    .strike{opacity:.75; text-decoration: line-through; text-decoration-thickness: 2px;}
+    .highlight{color:white; background: linear-gradient(135deg, rgba(124,58,237,.85), rgba(52,211,153,.22)); border-color: rgba(124,58,237,.45);}
+    @media (max-width: 980px){
+      .offer-grid{grid-template-columns:1fr;}
+      .offer-badges{justify-content:flex-start;}
+    }
+
   </style>
 </head>
 <body>
@@ -417,12 +461,13 @@
           </p>
 
           <div class="hero-ctas">
-            <a class="btn btn-primary pulse" href="#planos">Teste grátis 15 dias</a>
+            <a class="btn btn-primary pulse" href="#planos">Teste grátis 15 dias • oferta 50 vagas</a>
             <a class="btn" href="#recursos">Ver benefícios</a>
           </div>
 
           <div class="mini-proof">
             <span class="pill"><span class="check">✓</span> 15 dias grátis (tudo liberado)</span>
+            <span class="pill"><span class="check">✓</span> 1º mês R$50 (23% OFF) +2 meses bônus</span>
             <span class="pill"><span class="check">✓</span> Interface premium</span>
             <span class="pill"><span class="check">✓</span> Fácil de usar</span>
             <span class="pill"><span class="check">✓</span> Suporte LEP</span>
@@ -555,11 +600,31 @@
           <div class="muted tiny">Depois do teste, você escolhe se continua.</div>
         </div>
 
+
+        <div class="offer-banner" aria-label="Oferta de lançamento">
+          <div class="offer-grid">
+            <div>
+              <div class="kicker"><span>🎁</span> Oferta de lançamento (limitada)</div>
+              <p class="offer-title">Para os <span class="grad">50 primeiros clientes</span>: teste 15 dias + bônus exclusivo</p>
+              <p class="offer-sub">
+                <b>1ª mensalidade por R$ 50</b> <span class="muted">(de <span class="strike">R$ 65</span> • <b>23% OFF</b>)</span>
+                e <b>ganhe +2 meses grátis</b> ao continuar após o teste.
+              </p>
+            </div>
+            <div class="offer-badges">
+              <span class="offer-badge highlight">23% OFF no 1º mês</span>
+              <span class="offer-badge">15 dias grátis</span>
+              <span class="offer-badge">Só 50 vagas</span>
+              <span class="offer-badge">+2 meses bônus</span>
+            </div>
+          </div>
+        </div>
+
         <div class="pricing">
           <div class="price-card">
             <h3 class="muted">Teste grátis</h3>
             <div class="price">15<span class="tiny muted"> dias</span></div>
-            <div class="muted">Acesso completo para você validar o sistema no seu dia a dia.</div>
+            <div class="muted">Acesso completo para você validar o sistema no seu dia a dia <b>(promoção para os 50 primeiros)</b>.</div>
             <ul class="list">
               <li><span class="bullet">✓</span><span><b>Tudo liberado</b> (igual ao plano pago)</span></li>
               <li><span class="bullet">✓</span><span>Agenda, serviços, profissionais e clientes</span></li>
@@ -574,10 +639,16 @@
           <div class="price-card featured">
             <div class="kicker"><span>🔥</span> Plano Mensal</div>
             <h3>AgendaPRO</h3>
-            <div class="price">R$ 39,99<span class="tiny muted">/mês</span></div>
+            <div class="price">R$ 65,00<span class="tiny muted">/mês</span></div>
+            <div class="muted" style="margin-top:-4px;">
+              <span class="offer-badge highlight" style="display:inline-flex;">1º mês: R$ 50 (23% OFF)</span>
+              <span class="offer-badge" style="display:inline-flex; margin-left:8px;">+2 meses grátis (bônus)</span>
+            </div>
             <div class="muted">Continua com tudo completo, rodando liso e com suporte.</div>
             <ul class="list">
               <li><span class="bullet">✓</span><span>Todos os recursos do teste</span></li>
+              <li><span class="bullet">✓</span><span><b>1ª mensalidade:</b> R$ 50 (de R$ 65 • 23% OFF)</span></li>
+              <li><span class="bullet">✓</span><span><b>Bônus:</b> +2 meses grátis ao continuar após o teste</span></li>
               <li><span class="bullet">✓</span><span>Atualizações e melhorias</span></li>
               <li><span class="bullet">✓</span><span>Atendimento e acompanhamento</span></li>
               <li><span class="bullet">✓</span><span>Segurança e organização de dados</span></li>
