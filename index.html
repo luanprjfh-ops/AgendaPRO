@@ -3,712 +3,1229 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <base href="./" />
   <meta name="theme-color" content="#7c3aed" />
-  <title>AgendaPRO — Sistema premium de gestão para Barbearias, Salões & Studios</title>
-  <meta name="description" content="AgendaPRO é um sistema moderno e intuitivo para gestão de agenda, serviços, profissionais, produtos e clientes — ideal para barbearias, salões, studios de lash, unhas e sobrancelhas. Teste grátis por 7 dias com tudo liberado." />
+  <title>AgendaPRO — Gestão premium para barbearias, salões e studios (corrigido)</title>
+  <meta name="description" content="AgendaPRO é uma plataforma premium para barbearias, salões e studios. Agenda, clientes, serviços, profissionais e operação em um visual futurista, elegante e pronto para vender." />
   <style>
-    *,*::before,*::after{box-sizing:border-box}
-    html,body{height:100%}
+    :root{
+      --bg:#050510;
+      --bg-2:#090918;
+      --panel:rgba(255,255,255,.05);
+      --panel-2:rgba(255,255,255,.035);
+      --line:rgba(255,255,255,.11);
+      --line-strong:rgba(255,255,255,.18);
+      --text:rgba(255,255,255,.95);
+      --muted:rgba(255,255,255,.68);
+      --muted-2:rgba(255,255,255,.55);
+      --purple:#7c3aed;
+      --purple-2:#9f67ff;
+      --cyan:#43e7d3;
+      --green:#1ad598;
+      --pink:#ff4fd8;
+      --shadow:0 25px 100px rgba(0,0,0,.45);
+      --hero-shadow:0 50px 180px rgba(124,58,237,.22);
+      --radius:24px;
+      --radius-sm:18px;
+      --container:min(1180px, 92vw);
+    }
+    *{box-sizing:border-box}
+    *::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:rgba(255,255,255,.92);
-      background: radial-gradient(1100px 600px at 70% 30%, rgba(124,58,237,.18), transparent 60%),
-                  radial-gradient(900px 500px at 20% 70%, rgba(16,185,129,.12), transparent 55%),
-                  radial-gradient(800px 400px at 60% 85%, rgba(236,72,153,.10), transparent 60%),
-                  #070712;
+      min-height:100%;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 700px at 85% 10%, rgba(124,58,237,.18), transparent 65%),
+        radial-gradient(900px 650px at 10% 80%, rgba(16,185,129,.12), transparent 60%),
+        radial-gradient(800px 650px at 50% 45%, rgba(73,31,165,.10), transparent 60%),
+        linear-gradient(180deg,#03030b 0%, #070713 45%, #050510 100%);
       overflow-x:hidden;
     }
     a{color:inherit;text-decoration:none}
-    .container{width:min(1180px, 92vw); margin:0 auto}
-    .muted{color:rgba(255,255,255,.72)}
+    img{max-width:100%;display:block}
+    .container{width:var(--container);margin:0 auto;position:relative}
+    .muted{color:var(--muted)}
     .tiny{font-size:12px}
+    .section{padding:92px 0}
+    .section-tight{padding-top:50px}
+    .grad{
+      background:linear-gradient(90deg,#f6f0ff 0%,#b99cff 24%,#8a5cff 48%,#46dbc7 100%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      background-size:180% 180%;
+      animation:gradientShift 8s ease infinite;
+    }
+    @keyframes gradientShift{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
 
-    .noise{
+    #particles, #stars{
+      position:fixed; inset:0; width:100%; height:100%;
       pointer-events:none;
-      position:fixed; inset:0;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+    }
+    #stars{opacity:.55}
+    #particles{opacity:.7}
+
+    .noise, .grid, .vignette, .aurora, .cursor-glow{
+      position:fixed; inset:0; pointer-events:none;
+    }
+    .noise{
+      opacity:.08;
       mix-blend-mode:overlay;
-      opacity:.12;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
     }
     .grid{
-      pointer-events:none;
-      position:fixed; inset:-2px;
+      opacity:.18;
       background:
-        linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px) 0 0/52px 52px,
-        linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px) 0 0/52px 52px;
-      mask-image:radial-gradient(circle at 50% 20%, black 0 55%, transparent 75%);
-      opacity:.25;
+        linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px) 0 0/58px 58px,
+        linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px) 0 0/58px 58px;
+      mask-image:radial-gradient(circle at 50% 12%, black 0 45%, transparent 78%);
+    }
+    .vignette{
+      background:
+        radial-gradient(circle at 50% 15%, transparent 0 45%, rgba(0,0,0,.28) 80%, rgba(0,0,0,.50) 100%);
+    }
+    .aurora::before,.aurora::after{
+      content:"";
+      position:absolute;
+      width:42vw;height:42vw;border-radius:50%;
+      filter:blur(90px);
+      opacity:.16;
+      animation:floatOrb 16s ease-in-out infinite alternate;
+    }
+    .aurora::before{
+      left:-8vw;top:10vh;background:radial-gradient(circle, rgba(124,58,237,.75), transparent 62%);
+    }
+    .aurora::after{
+      right:-10vw;top:2vh;background:radial-gradient(circle, rgba(67,231,211,.6), transparent 58%);
+      animation-duration:19s;
+    }
+    @keyframes floatOrb{
+      from{transform:translate3d(0,0,0) scale(1)}
+      to{transform:translate3d(3vw,5vh,0) scale(1.15)}
+    }
+    .cursor-glow{
+      z-index:3;
+      background:radial-gradient(220px 220px at var(--mx,50%) var(--my,50%), rgba(124,58,237,.12), transparent 60%);
+      transition:background-position .08s linear;
+    }
+
+    .scroll-progress{
+      position:fixed;top:0;left:0;height:3px;width:0%;z-index:999;
+      background:linear-gradient(90deg,var(--purple),var(--cyan));
+      box-shadow:0 0 24px rgba(124,58,237,.55);
     }
 
     header{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(12px);
-      background: linear-gradient(to bottom, rgba(7,7,18,.82), rgba(7,7,18,.45));
-      border-bottom:1px solid rgba(255,255,255,.08);
+      position:sticky;top:0;z-index:100;
+      backdrop-filter:blur(16px);
+      background:linear-gradient(to bottom, rgba(3,3,11,.85), rgba(3,3,11,.40));
+      border-bottom:1px solid rgba(255,255,255,.06);
+      transition:border-color .25s ease, background .25s ease, box-shadow .25s ease;
+    }
+    header.scrolled{
+      border-bottom-color:rgba(255,255,255,.11);
+      box-shadow:0 14px 50px rgba(0,0,0,.22);
+      background:linear-gradient(to bottom, rgba(3,3,11,.92), rgba(3,3,11,.62));
     }
     .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:14px;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;
     }
-    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px}
+    .brand{
+      display:flex;align-items:center;gap:14px;
+      min-width:0;
+    }
     .logo{
-      width:38px; height:38px; border-radius:12px;
-      background: radial-gradient(circle at 30% 30%, #a78bfa, #7c3aed 55%, rgba(124,58,237,.35));
-      box-shadow: 0 12px 40px rgba(124,58,237,.35);
-      display:grid; place-items:center;
+      width:52px;height:52px;border-radius:18px;
       border:1px solid rgba(255,255,255,.12);
-      position:relative;
-      overflow:hidden;
+      background:
+        radial-gradient(circle at 28% 28%, rgba(255,255,255,.35), transparent 28%),
+        linear-gradient(145deg, rgba(148,104,255,.95), rgba(90,39,214,.95));
+      box-shadow:0 18px 40px rgba(124,58,237,.32), inset 0 1px 0 rgba(255,255,255,.18);
+      position:relative;overflow:hidden;display:grid;place-items:center;
+      font-weight:900;letter-spacing:.4px;
     }
-    .logo::after{
+    .logo::before{
       content:"";
-      position:absolute; inset:-40%;
-      background: conic-gradient(from 120deg, transparent, rgba(255,255,255,.35), transparent 60%);
-      animation: spin 5.5s linear infinite;
-      opacity:.55;
+      position:absolute;inset:-40%;
+      background:conic-gradient(from 120deg, transparent, rgba(255,255,255,.55), transparent 45%);
+      animation:spin 6s linear infinite;
+      opacity:.45;
     }
-    .logo span{position:relative; font-size:14px; font-weight:900}
-    .navlinks{display:flex; gap:18px; align-items:center}
+    .logo span{position:relative}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .brand-title{
+      font-size:1rem;font-weight:900;letter-spacing:.2px;
+      display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    }
+    .brand-sub{color:var(--muted);font-size:13px;line-height:1.3}
+    .navlinks,.navcta{display:flex;align-items:center;gap:10px}
     .navlinks a{
-      padding:10px 10px;
-      border-radius:12px;
-      color:rgba(255,255,255,.78);
-      transition: all .18s ease;
+      color:rgba(255,255,255,.76);
+      padding:11px 12px;border-radius:14px;
+      transition:.22s ease;
       border:1px solid transparent;
+      font-weight:700;
     }
     .navlinks a:hover{
-      color:white;
-      border-color:rgba(255,255,255,.12);
-      background:rgba(255,255,255,.03);
+      color:#fff;background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.12)
     }
-    .navcta{display:flex; gap:10px; align-items:center}
 
     .btn{
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:white;
-      padding:10px 14px;
-      border-radius:14px;
-      font-weight:700;
-      letter-spacing:.2px;
-      cursor:pointer;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      --btnbg:rgba(255,255,255,.045);
+      --btnline:rgba(255,255,255,.12);
       position:relative;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:50px;
+      padding:0 18px;
+      border-radius:17px;
+      border:1px solid var(--btnline);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      color:#fff;
+      font-weight:850;
+      letter-spacing:.15px;
+      cursor:pointer;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
       overflow:hidden;
-      display:inline-flex; align-items:center; gap:10px;
       user-select:none;
+      isolation:isolate;
+      box-shadow:0 10px 30px rgba(0,0,0,.12);
     }
-    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.22)}
-    .btn:active{transform: translateY(0px) scale(.98)}
-    .btn-primary{
-      border-color: rgba(124,58,237,.55);
-      background: linear-gradient(135deg, rgba(124,58,237,.85), rgba(168,85,247,.78));
-      box-shadow: 0 18px 60px rgba(124,58,237,.28);
-    }
-    .btn-primary::before{
+    .btn::before{
       content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(circle at 20% 20%, rgba(255,255,255,.35), transparent 40%),
-                  radial-gradient(circle at 80% 70%, rgba(255,255,255,.22), transparent 45%);
-      opacity:.55;
-      pointer-events:none;
+      position:absolute;inset:-120% auto auto -30%;
+      width:54%;height:300%;
+      transform:rotate(20deg);
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+      transition:transform .7s ease;
+      z-index:0;
     }
-    .pulse{
-      box-shadow: 0 0 0 0 rgba(124,58,237,.7);
-      animation: pulse 2.2s infinite;
+    .btn:hover{
+      transform:translateY(-2px) scale(1.01);
+      border-color:rgba(255,255,255,.20);
+      box-shadow:0 14px 42px rgba(0,0,0,.22), 0 0 0 1px rgba(255,255,255,.04) inset;
     }
-    @keyframes pulse{
-      0%{box-shadow:0 0 0 0 rgba(124,58,237,.55)}
-      70%{box-shadow:0 0 0 18px rgba(124,58,237,0)}
-      100%{box-shadow:0 0 0 0 rgba(124,58,237,0)}
+    .btn:hover::before{transform:translateX(280%) rotate(20deg)}
+    .btn:active{transform:translateY(0) scale(.985)}
+    .btn > *,.btn > span{position:relative;z-index:1}
+    .btn-primary{
+      --btnline:rgba(133,82,255,.56);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.18), transparent 28%),
+        linear-gradient(135deg, rgba(124,58,237,.96), rgba(162,89,255,.96));
+      box-shadow:0 18px 60px rgba(124,58,237,.28), inset 0 1px 0 rgba(255,255,255,.18);
     }
-    @keyframes spin{to{transform:rotate(360deg)}}
+    .btn-primary:hover{box-shadow:0 22px 70px rgba(124,58,237,.35)}
+    .btn-soft{
+      background:rgba(255,255,255,.045);
+      backdrop-filter:blur(10px);
+    }
+    .btn-pulse{animation:buttonPulse 2.8s ease-in-out infinite}
+    @keyframes buttonPulse{
+      0%,100%{box-shadow:0 18px 60px rgba(124,58,237,.24)}
+      50%{box-shadow:0 18px 72px rgba(124,58,237,.38), 0 0 0 10px rgba(124,58,237,.06)}
+    }
 
-    .hero{padding:68px 0 36px; position:relative;}
+    .hero{
+      position:relative;
+      padding:72px 0 56px;
+    }
     .hero-grid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:28px;
-      align-items:center;
+      display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;
     }
-    .badge{
-      display:inline-flex; align-items:center; gap:10px;
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
       border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      padding:8px 12px;
-      border-radius:999px;
-      font-weight:800;
-      letter-spacing:.25px;
-      color:rgba(255,255,255,.86);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius:999px;padding:10px 14px;
+      color:rgba(255,255,255,.88);font-weight:900;
+      box-shadow:0 8px 25px rgba(0,0,0,.12);
     }
-    .dot{
-      width:9px; height:9px; border-radius:99px;
-      background:#10b981;
-      box-shadow: 0 0 0 6px rgba(16,185,129,.14);
+    .eyebrow-dot{
+      width:11px;height:11px;border-radius:999px;background:var(--green);
+      box-shadow:0 0 0 7px rgba(26,213,152,.12), 0 0 18px rgba(26,213,152,.40);
+      animation:liveDot 1.8s ease infinite;
+    }
+    @keyframes liveDot{
+      0%,100%{transform:scale(1);opacity:1}
+      50%{transform:scale(.72);opacity:.75}
     }
     h1{
-      margin:16px 0 10px;
-      font-size: clamp(34px, 4.1vw, 54px);
-      line-height:1.02;
-      letter-spacing:-.6px;
+      margin:20px 0 14px;
+      font-size:clamp(42px,5.2vw,76px);
+      line-height:.96;
+      letter-spacing:-1.8px;
+      max-width:12ch;
     }
-    .grad{
-      background: linear-gradient(90deg, #c4b5fd, #7c3aed 45%, #34d399);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
+    .hero p.lead{
+      margin:0;
+      color:rgba(255,255,255,.74);
+      font-size:clamp(16px,1.45vw,20px);
+      line-height:1.62;
+      max-width:62ch;
     }
-    .sub{
-      font-size: clamp(15px, 1.35vw, 18px);
-      line-height:1.55;
-      color: rgba(255,255,255,.74);
-      margin: 0 0 18px;
-    }
-    .hero-ctas{display:flex; gap:12px; flex-wrap:wrap; margin:18px 0 10px}
-    .mini-proof{
-      display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+    .hero-copy-strong{
       margin-top:16px;
-      color:rgba(255,255,255,.68);
-      font-weight:700;
+      color:rgba(255,255,255,.92);
+      font-weight:800;
+      line-height:1.55;
+      font-size:15px;
     }
-    .mini-proof .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
+    .hero-ctas{
+      display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 18px;
+    }
+    .proof-row{
+      display:flex;gap:12px;flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .proof-pill{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:11px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.11);
+      background:rgba(255,255,255,.035);
+      color:rgba(255,255,255,.78);
+      font-weight:800;
+      backdrop-filter:blur(10px);
+    }
+    .proof-pill .tick{
+      width:20px;height:20px;border-radius:9px;display:grid;place-items:center;
+      background:rgba(26,213,152,.17);border:1px solid rgba(26,213,152,.34)
+    }
+
+    .metrics{
+      margin-top:24px;
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+    }
+    .metric{
       border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      border-radius:20px;padding:18px;
+      box-shadow:var(--shadow);
+      position:relative;overflow:hidden;
     }
-    .check{
-      width:18px;height:18px;border-radius:8px;
-      background: rgba(16,185,129,.18);
-      border:1px solid rgba(16,185,129,.35);
-      display:grid; place-items:center;
-      font-size:12px;
+    .metric::before{
+      content:"";
+      position:absolute;inset:auto -20% -65% auto;width:160px;height:160px;border-radius:50%;
+      background:radial-gradient(circle, rgba(124,58,237,.28), transparent 65%);
+      filter:blur(6px);opacity:.55;
+    }
+    .metric .n{
+      font-size:30px;font-weight:950;letter-spacing:-1px;
+    }
+    .metric .label{
+      margin-top:4px;color:var(--muted);font-weight:700;line-height:1.4;font-size:14px;
     }
 
     .showcase{
-      position:relative;
-      border-radius:24px;
-      border:1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      box-shadow: 0 30px 120px rgba(0,0,0,.45);
+      position:relative;border-radius:32px;padding:18px;
+      border:1px solid rgba(255,255,255,.11);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+      box-shadow:var(--hero-shadow), var(--shadow);
       overflow:hidden;
+      transform-style:preserve-3d;
     }
     .showcase::before{
       content:"";
-      position:absolute; inset:-1px;
-      background: radial-gradient(800px 280px at 20% 15%, rgba(124,58,237,.35), transparent 60%),
-                  radial-gradient(700px 300px at 80% 80%, rgba(16,185,129,.22), transparent 60%);
-      opacity:.6;
+      position:absolute;inset:-1px;
+      background:
+        radial-gradient(1100px 500px at 15% 8%, rgba(124,58,237,.24), transparent 56%),
+        radial-gradient(900px 500px at 90% 85%, rgba(67,231,211,.14), transparent 55%);
+      opacity:.85;pointer-events:none;
+    }
+    .showcase::after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), transparent 28%);
       pointer-events:none;
     }
-    .showcase-inner{
-      position:relative;
-      padding:16px;
-      display:grid;
-      gap:14px;
+    .showcase-head{
+      position:relative;z-index:2;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      margin-bottom:14px;
     }
-    .slide-img{
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
-      overflow:hidden;
-      background: radial-gradient(1200px 420px at 20% 15%, rgba(124,58,237,.10), transparent 55%),
-                  rgba(5,5,13,.9);
-      min-height: 320px;
-      display:grid; place-items:center;
-      padding:12px;
-      cursor: zoom-in;
+    .window-dots{display:flex;gap:7px}
+    .window-dots span{
+      width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,.25)
     }
-    .slide-img img{
-      width:100%;
-      height:100%;
-      max-height:420px;
-      object-fit:contain;
-      display:block;
-      border-radius:14px;
-      transform: scale(1.00);
-      filter: saturate(1.05) contrast(1.02);
-    }
-    .slide-meta{display:grid; gap:8px; padding:6px 2px 2px;}
-    .slide-meta h3{margin:0; font-size:18px; letter-spacing:-.2px;}
-    .slide-meta p{margin:0; color:rgba(255,255,255,.74); line-height:1.45; font-size:14px;}
-
-    .kicker{
+    .window-dots span:nth-child(1){background:#ff5f57}
+    .window-dots span:nth-child(2){background:#ffbd2e}
+    .window-dots span:nth-child(3){background:#28c840}
+    .showcase-head .state{
       color:rgba(255,255,255,.72);
-      font-weight:800;
-      border:1px solid rgba(255,255,255,.12);
-      padding:7px 10px;
-      border-radius:999px;
+      font-weight:800;font-size:12px;
+      display:flex;align-items:center;gap:8px;
+      border:1px solid rgba(255,255,255,.10);
+      padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.03);
+    }
+    .showcase-grid{
+      position:relative;z-index:2;
+      display:grid;grid-template-columns:1fr;gap:16px;
+      align-items:start;
+    }
+    .panel{
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:24px;padding:18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      backdrop-filter:blur(12px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+      position:relative;overflow:hidden;
+      min-width:0;
+    }
+    .panel::before{
+      content:"";
+      position:absolute;inset:auto -10% -38% auto;width:240px;height:240px;border-radius:50%;
+      background:radial-gradient(circle, rgba(124,58,237,.18), transparent 62%);
+      filter:blur(8px);opacity:.8;
+      pointer-events:none;
+    }
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;
+    }
+    .search{
+      flex:1;display:flex;align-items:center;gap:10px;
+      min-height:46px;padding:0 14px;border-radius:15px;
+      border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);
+      color:var(--muted);
+      font-weight:700;
+    }
+    .mini-btn{
+      min-width:46px;height:46px;border-radius:15px;border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);display:grid;place-items:center;color:#fff;font-size:18px;
+      box-shadow:0 8px 24px rgba(0,0,0,.10);
+    }
+    .dash-title{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 14px;
+    }
+    .dash-title h3,.phone-head h3,.section-head h2{
+      margin:0;letter-spacing:-.6px;
+    }
+    .dash-title h3{font-size:26px}
+    .dash-title p{margin:4px 0 0;color:var(--muted);font-weight:700;font-size:14px}
+    .live-chip{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid rgba(67,231,211,.22);
+      background:rgba(67,231,211,.08);
+      color:#e9fffb;
+      padding:8px 12px;border-radius:999px;
+      font-weight:900;font-size:12px;
+      box-shadow:0 0 22px rgba(67,231,211,.10);
+    }
+    .live-chip i{
+      width:8px;height:8px;border-radius:50%;background:var(--cyan);display:block;
+      box-shadow:0 0 14px rgba(67,231,211,.75);
+    }
+    .stats-grid{
+      display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:14px;
+    }
+    .stat-box{
+      border:1px solid rgba(255,255,255,.08);
       background:rgba(255,255,255,.03);
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      width:max-content;
+      border-radius:18px;padding:14px;
+      min-height:95px;
+      position:relative;overflow:hidden;
     }
-
-    .slide-controls{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px;}
-    .dots{display:flex; gap:8px; align-items:center}
-    .dotbtn{
-      width:10px; height:10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
-      cursor:pointer;
-      transition: transform .18s ease, background .18s ease;
+    .stat-box::after{
+      content:"";position:absolute;right:-22px;bottom:-22px;width:80px;height:80px;border-radius:50%;
+      background:radial-gradient(circle, rgba(124,58,237,.20), transparent 60%);
     }
-    .dotbtn[aria-current="true"]{
-      background: rgba(124,58,237,.85);
-      border-color: rgba(124,58,237,.95);
-      transform: scale(1.25);
-      box-shadow: 0 0 0 8px rgba(124,58,237,.18);
-    }
-    .ctrls{display:flex; gap:10px}
-    .iconbtn{
-      width:42px; height:42px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color:white;
-      cursor:pointer;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
-      display:grid; place-items:center;
-    }
-    .iconbtn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.22)}
-    .iconbtn:active{transform: scale(.98)}
-    .progress{height:3px; border-radius:99px; background: rgba(255,255,255,.10); overflow:hidden; margin-top:12px;}
-    .bar{height:100%; width:0%; background: linear-gradient(90deg, rgba(124,58,237,.95), rgba(52,211,153,.9)); border-radius:99px;}
-
-    section{padding:40px 0}
-    .section-title{display:flex; align-items:end; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:16px;}
-    .section-title h2{margin:0; font-size: clamp(22px, 2.3vw, 30px); letter-spacing:-.35px;}
-
-    .cards{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;}
-    .card{
-      border:1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+    .stat-box .label{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.6px}
+    .stat-box .value{margin-top:8px;font-size:24px;font-weight:950;letter-spacing:-.6px}
+    .stat-box .delta{margin-top:6px;color:#b8ffe6;font-size:12px;font-weight:800}
+    .agenda-card,.client-card,.chat-card,.glass-card{
+      min-width:0;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.028);
       border-radius:20px;
-      padding:16px;
-      position:relative;
-      overflow:hidden;
-      min-height:150px;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      padding:14px;
     }
-    .card:hover{transform: translateY(-2px); border-color: rgba(255,255,255,.20); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));}
-    .card::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(500px 160px at 20% 10%, rgba(124,58,237,.22), transparent 60%),
-                  radial-gradient(420px 150px at 85% 85%, rgba(16,185,129,.18), transparent 60%);
-      opacity:.55;
-      pointer-events:none;
+    .agenda-list{display:grid;gap:10px}
+    .appointment{
+      display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;
+      padding:13px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
+      transition:transform .2s ease, border-color .2s ease, background .2s ease;
     }
-    .card > *{position:relative}
-    .card h3{margin:10px 0 6px; font-size:16px}
-    .card p{margin:0; color:rgba(255,255,255,.72); line-height:1.5; font-size:14px}
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      font-weight:900;
-      letter-spacing:.2px;
-      font-size:12px;
-      color:rgba(255,255,255,.86);
+    .appointment:hover{
+      transform:translateX(2px);
+      border-color:rgba(124,58,237,.32);
+      background:rgba(124,58,237,.07);
     }
-    .chip .mini{
-      width:22px; height:22px; border-radius:10px;
-      display:grid; place-items:center;
-      background: rgba(124,58,237,.18);
+    .time{
+      width:58px;height:58px;border-radius:16px;display:grid;place-items:center;
+      background:linear-gradient(145deg, rgba(124,58,237,.28), rgba(124,58,237,.12));
       border:1px solid rgba(124,58,237,.28);
-      font-size:12px;
+      font-size:14px;font-weight:900;line-height:1.1;text-align:center;
+      box-shadow:0 10px 25px rgba(124,58,237,.12);
     }
+    .service-name{font-weight:900}
+    .service-sub{margin-top:4px;color:var(--muted);font-size:13px;font-weight:700}
+    .status{
+      padding:10px 12px;border-radius:999px;font-weight:900;font-size:12px;white-space:nowrap;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+    }
+    .status.ok{background:rgba(26,213,152,.10);border-color:rgba(26,213,152,.24);color:#d9fff3}
+    .status.wait{background:rgba(255,199,0,.10);border-color:rgba(255,199,0,.20);color:#fff0bb}
+    .status.new{background:rgba(124,58,237,.12);border-color:rgba(124,58,237,.25);color:#f1e7ff}
 
-    .pricing{display:grid; grid-template-columns: 1fr 1fr; gap:14px;}
-    .price-card{
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
-      padding:18px;
-      position:relative;
-      overflow:hidden;
+    .phone-panel{
+      display:grid;
+      grid-template-columns:minmax(0,330px) minmax(0,1fr);
+      align-items:start;
+      gap:14px;
+      min-width:0;
     }
-    .price-card.featured{border-color: rgba(124,58,237,.45); box-shadow: 0 30px 120px rgba(124,58,237,.18);}
-    .price{font-size:34px; font-weight:950; letter-spacing:-.6px; margin:10px 0 8px}
-    .list{margin:10px 0 0; padding:0; list-style:none; display:grid; gap:10px}
-    .list li{display:flex; gap:10px; align-items:flex-start; color:rgba(255,255,255,.76); line-height:1.35}
-    .bullet{
-      width:22px;height:22px;border-radius:10px;
-      display:grid; place-items:center;
-      background: rgba(16,185,129,.18);
-      border:1px solid rgba(16,185,129,.30);
-      flex:0 0 auto;
-      margin-top:1px;
+    .phone{
+      width:min(100%, 330px);max-width:100%;margin:0 auto;
+      border-radius:34px;
+      padding:14px;
+      background:linear-gradient(180deg, rgba(11,11,22,.95), rgba(8,8,18,.92));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:0 30px 90px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.03) inset;
+      position:relative;overflow:hidden;
     }
-
-    details{border-radius:18px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); padding:14px 14px;}
-    details + details{margin-top:10px}
-    summary{cursor:pointer; font-weight:900; letter-spacing:-.1px; list-style:none;}
-    summary::-webkit-details-marker{display:none}
-    details p{margin:10px 0 0; color:rgba(255,255,255,.74); line-height:1.5}
-
-    footer{border-top:1px solid rgba(255,255,255,.08); padding:26px 0 34px; color:rgba(255,255,255,.70);}
-    .footergrid{display:grid; grid-template-columns: 1.2fr .8fr; gap:18px; align-items:start;}
-    .fine{color:rgba(255,255,255,.62); font-size:13px; line-height:1.55}
-
-                                    
-    @media (max-width: 980px){
-      .hero-grid{grid-template-columns:1fr;}
-      .cards{grid-template-columns: 1fr}
-      .pricing{grid-template-columns:1fr}
-      .navlinks{display:none}
-      .slide-img{min-height:260px}
-      .slide-img img{max-height:360px}
-    }
-  
-    /* Oferta de lançamento */
-    .offer-banner{
-      border-radius:22px;
-      border:1px solid rgba(124,58,237,.40);
-      background: radial-gradient(700px 220px at 15% 20%, rgba(124,58,237,.28), transparent 60%),
-                  radial-gradient(620px 220px at 85% 80%, rgba(16,185,129,.18), transparent 60%),
-                  rgba(255,255,255,.03);
-      padding:16px;
-      margin: 14px 0 18px;
-      position:relative;
-      overflow:hidden;
-    }
-    .offer-banner::after{
+    .phone::before{
       content:"";
-      position:absolute; inset:-40%;
-      background: conic-gradient(from 200deg, transparent, rgba(255,255,255,.18), transparent 60%);
-      animation: spin 9s linear infinite;
-      opacity:.35;
+      position:absolute;left:50%;transform:translateX(-50%);
+      top:7px;width:36%;height:24px;border-radius:0 0 18px 18px;
+      background:rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.05);
+      z-index:3;
+    }
+    .phone-screen{
+      position:relative;z-index:1;
+      border-radius:26px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(500px 250px at 50% 0%, rgba(124,58,237,.22), transparent 60%),
+        linear-gradient(180deg, #0a0b17 0%, #0b1020 100%);
+      min-height:520px;padding:18px;
+    }
+    .phone-head{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 18px;
+    }
+    .phone-head h3{font-size:20px}
+    .phone-head p{margin:4px 0 0;color:var(--muted);font-size:13px;font-weight:700}
+    .mini-stats{
+      display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px;
+    }
+    .mini-stat{
+      border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:12px;
+      background:rgba(255,255,255,.03);
+    }
+    .mini-stat .k{font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);font-weight:900}
+    .mini-stat .v{margin-top:8px;font-size:20px;font-weight:950}
+    .chat-feed{display:grid;gap:10px;margin-top:8px}
+    .bubble{
+      max-width:84%;padding:12px 14px;border-radius:18px;
+      font-weight:700;line-height:1.45;font-size:13px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .bubble.left{
+      background:rgba(255,255,255,.04);color:rgba(255,255,255,.82);
+      border-top-left-radius:8px;
+    }
+    .bubble.right{
+      margin-left:auto;
+      background:linear-gradient(145deg, rgba(124,58,237,.22), rgba(67,231,211,.14));
+      color:#fff;border-top-right-radius:8px;
+      box-shadow:0 12px 30px rgba(124,58,237,.16);
+    }
+
+    .section-head{
+      display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px;
+    }
+    .section-kicker{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 11px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.035);
+      color:rgba(255,255,255,.84);font-weight:900;font-size:12px;letter-spacing:.2px
+    }
+    .section-head h2{
+      margin:10px 0 0;font-size:clamp(28px,3vw,42px);line-height:1.05;
+    }
+    .section-desc{color:var(--muted);font-weight:700;max-width:56ch;line-height:1.6}
+
+    .feature-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+    }
+    .feature-card{
+      position:relative;
+      border-radius:24px;padding:20px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.11);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+      transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      transform-style:preserve-3d;
+    }
+    .feature-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(124,58,237,.30);
+      box-shadow:0 28px 70px rgba(0,0,0,.28), 0 0 0 1px rgba(124,58,237,.10) inset;
+      background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.022));
+    }
+    .feature-card::before{
+      content:"";
+      position:absolute;inset:auto -15% -38% auto;width:180px;height:180px;border-radius:50%;
+      background:radial-gradient(circle, rgba(124,58,237,.20), transparent 60%);
+      filter:blur(6px);pointer-events:none
+    }
+    .feature-icon{
+      width:48px;height:48px;border-radius:16px;
+      display:grid;place-items:center;font-size:20px;
+      border:1px solid rgba(124,58,237,.20);
+      background:linear-gradient(145deg, rgba(124,58,237,.22), rgba(124,58,237,.08));
+      box-shadow:0 10px 24px rgba(124,58,237,.12);
+    }
+    .feature-card h3{
+      margin:16px 0 8px;font-size:20px;letter-spacing:-.4px;
+    }
+    .feature-card p{
+      margin:0;color:var(--muted);line-height:1.62;font-weight:700;font-size:14px;
+    }
+    .feature-chip{
+      margin-top:16px;display:inline-flex;align-items:center;gap:8px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-radius:999px;padding:8px 10px;color:rgba(255,255,255,.82);
+      font-size:12px;font-weight:900
+    }
+
+    .timeline{
+      display:grid;grid-template-columns:1fr 1fr;gap:18px;
+    }
+    .timeline-card,.pricing-card,.faq-item,.cta-card{
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-radius:26px;padding:22px;
+      box-shadow:var(--shadow);
+      position:relative;overflow:hidden;
+    }
+    .timeline-card::before,.pricing-card::before,.cta-card::before{
+      content:"";
+      position:absolute;inset:-20% auto auto -10%;width:180px;height:180px;border-radius:50%;
+      background:radial-gradient(circle, rgba(124,58,237,.18), transparent 60%);
       pointer-events:none;
     }
-    .offer-grid{position:relative; display:grid; grid-template-columns: 1.1fr .9fr; gap:14px; align-items:center;}
-    .offer-title{margin:0; font-weight:950; letter-spacing:-.35px; font-size:18px;}
-    .offer-sub{margin:6px 0 0; color:rgba(255,255,255,.74); line-height:1.45; font-size:14px;}
-    .offer-badges{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;}
-    .offer-badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.03);
-      font-weight:900;
-      letter-spacing:.2px;
-      font-size:12px;
-      color:rgba(255,255,255,.86);
-      white-space:nowrap;
+    .step-list{display:grid;gap:14px;margin-top:16px}
+    .step{
+      display:grid;grid-template-columns:auto 1fr;gap:14px;
+      padding:14px;border-radius:20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
     }
-    .strike{opacity:.75; text-decoration: line-through; text-decoration-thickness: 2px;}
-    .highlight{color:white; background: linear-gradient(135deg, rgba(124,58,237,.85), rgba(52,211,153,.22)); border-color: rgba(124,58,237,.45);}
-    @media (max-width: 980px){
-      .offer-grid{grid-template-columns:1fr;}
-      .offer-badges{justify-content:flex-start;}
+    .step-n{
+      width:42px;height:42px;border-radius:14px;display:grid;place-items:center;
+      font-weight:950;
+      background:linear-gradient(145deg, rgba(124,58,237,.25), rgba(124,58,237,.09));
+      border:1px solid rgba(124,58,237,.28);
+    }
+    .step b{display:block;margin-bottom:4px}
+    .step span{color:var(--muted);line-height:1.55;font-weight:700;font-size:14px}
+
+    .pricing-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:16px
+    }
+    .pricing-card.featured{
+      border-color:rgba(124,58,237,.34);
+      box-shadow:0 32px 95px rgba(124,58,237,.14), var(--shadow);
+    }
+    .price-top{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:12px;
+    }
+    .badge-top{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);font-size:12px;font-weight:900
+    }
+    .price{
+      margin:10px 0 6px;font-size:46px;font-weight:950;letter-spacing:-1.6px;
+    }
+    .price small{font-size:15px;color:var(--muted);font-weight:800}
+    .price-note{color:var(--muted);font-weight:700;line-height:1.6;font-size:14px}
+    .price-list{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:11px}
+    .price-list li{display:flex;align-items:flex-start;gap:10px;color:rgba(255,255,255,.78);font-weight:700;line-height:1.45}
+    .checkdot{
+      width:22px;height:22px;border-radius:10px;display:grid;place-items:center;flex:0 0 auto;
+      background:rgba(26,213,152,.16);border:1px solid rgba(26,213,152,.30)
     }
 
+    .faq-wrap{display:grid;gap:12px}
+    .faq-item{
+      padding:0;overflow:hidden;
+      transition:border-color .2s ease, transform .2s ease;
+    }
+    .faq-item:hover{border-color:rgba(255,255,255,.16);transform:translateY(-1px)}
+    details{padding:20px}
+    summary{
+      list-style:none;cursor:pointer;font-weight:900;font-size:18px;letter-spacing:-.3px;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary::after{
+      content:"+";
+      width:34px;height:34px;border-radius:12px;display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.03);
+      font-size:22px;line-height:1;flex:0 0 auto;
+      transition:transform .2s ease, background .2s ease;
+    }
+    details[open] summary::after{transform:rotate(45deg);background:rgba(124,58,237,.10)}
+    details p{
+      margin:14px 0 0;color:var(--muted);line-height:1.7;font-weight:700
+    }
+
+    .cta-card{
+      padding:28px;
+      background:
+        radial-gradient(1000px 400px at 20% 0%, rgba(124,58,237,.18), transparent 55%),
+        radial-gradient(800px 300px at 95% 100%, rgba(67,231,211,.12), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    }
+    .cta-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:center}
+    .cta-points{display:grid;gap:10px;margin-top:16px}
+    .cta-point{
+      display:flex;align-items:center;gap:10px;
+      color:rgba(255,255,255,.78);font-weight:800
+    }
+    .cta-right{
+      display:grid;gap:12px;
+    }
+    .contact-box{
+      padding:16px;border-radius:20px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.035)
+    }
+    .contact-box b{display:block;font-size:16px;margin-bottom:4px}
+    .contact-box span{color:var(--muted);font-weight:700;font-size:14px;line-height:1.5}
+
+    footer{
+      padding:26px 0 36px;
+      border-top:1px solid rgba(255,255,255,.07);
+      color:var(--muted);
+      margin-top:40px;
+    }
+    .footer-grid{
+      display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;
+    }
+
+    .reveal{
+      opacity:0;transform:translateY(26px) scale(.985);filter:blur(6px);
+      transition:opacity .7s ease, transform .7s ease, filter .7s ease;
+      will-change:transform,opacity,filter;
+    }
+    .reveal.in{
+      opacity:1;transform:none;filter:none;
+    }
+
+    .mobile-only{display:none}
+    .hero-grid > *, .showcase-grid > *, .timeline > *, .pricing-grid > *, .cta-grid > *{min-width:0}
+    .stats-grid > *, .mini-stats > *, .metrics > *, .feature-grid > *{min-width:0}
+    .appointment > *, .topbar > *{min-width:0}
+    .service-name, .service-sub, .stat-box .label, .bubble, .contact-box span, .feature-card p, .dash-title h3, .phone-head h3{overflow-wrap:anywhere}
+
+    @media (min-width: 1400px){
+      .showcase-grid{grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr)}
+    }
+    @media (max-width: 1180px){
+      .phone-panel{grid-template-columns:1fr}
+      .phone{width:min(100%,420px)}
+    }
+    @media (max-width: 1100px){
+      .hero-grid,.timeline,.pricing-grid,.cta-grid{grid-template-columns:1fr}
+      .metrics,.feature-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width: 920px){
+      .stats-grid{grid-template-columns:1fr}
+      .appointment{grid-template-columns:1fr;align-items:flex-start}
+      .time{width:72px;height:54px}
+      .status{justify-self:flex-start}
+      .showcase{padding:16px}
+      .panel{padding:16px}
+      .phone-panel{grid-template-columns:1fr}
+      .phone-screen{min-height:auto}
+    }
+    @media (max-width: 760px){
+      .navlinks{display:none}
+      .nav{padding:14px 0}
+      .brand-sub{display:none}
+      h1{max-width:13ch}
+      .hero{padding-top:46px}
+      .hero-ctas{flex-direction:column;align-items:stretch}
+      .hero-ctas .btn{width:100%}
+      .metrics,.feature-grid,.mini-stats{grid-template-columns:1fr}
+      .proof-row{gap:10px}
+      .proof-pill{width:100%;justify-content:flex-start}
+      .section{padding:72px 0}
+      .showcase{padding:14px;border-radius:24px}
+      .panel,.timeline-card,.pricing-card,.cta-card,details,.phone-screen{padding:18px}
+      .footer-grid{grid-template-columns:1fr}
+      .navcta .btn:first-child{display:none}
+      .mobile-only{display:inline-flex}
+      .topbar{grid-template-columns:1fr auto auto;display:grid}
+      .search{font-size:14px;padding:0 12px}
+      .dash-title{align-items:flex-start;flex-direction:column}
+      .phone{width:100%;max-width:100%}
+    }
+    @media (max-width: 560px){
+      .container{width:min(100% - 24px, var(--container))}
+      .logo{width:46px;height:46px;border-radius:15px}
+      .brand-title{font-size:.95rem}
+      .eyebrow{font-size:12px;line-height:1.35}
+      h1{font-size:clamp(34px,10vw,52px);letter-spacing:-1.2px}
+      .hero p.lead{font-size:15px}
+      .showcase-head{flex-direction:column;align-items:flex-start}
+      .window-dots{margin-bottom:4px}
+      .mini-btn{min-width:42px;height:42px;border-radius:13px}
+      .dash-title h3{font-size:22px}
+      .stat-box .value{font-size:22px}
+      .phone{padding:10px;border-radius:26px}
+      .phone-screen{border-radius:20px;padding:14px}
+      .mini-stats{grid-template-columns:1fr 1fr}
+      .bubble{max-width:100%;font-size:12.5px}
+      .cta-card{padding:20px}
+    }
   </style>
 </head>
 <body>
-  <div class="noise"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <canvas id="stars"></canvas>
+  <canvas id="particles"></canvas>
+  <div class="aurora"></div>
   <div class="grid"></div>
+  <div class="noise"></div>
+  <div class="vignette"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
 
-  <header>
+  <header id="siteHeader">
     <div class="container nav">
       <a class="brand" href="#top" aria-label="AgendaPRO">
-        <div class="logo" aria-hidden="true"><span>AP</span></div>
+        <div class="logo"><span>AP</span></div>
         <div>
-          <div style="display:flex;align-items:baseline;gap:8px;">
-            <div style="font-size:15px;">Agenda<span class="grad">PRO</span></div>
-            <div class="tiny muted">Premium • Magnífico</div>
-          </div>
-          <div class="tiny muted" style="margin-top:1px;">Sistema de gestão para barbearias, salões e studios</div>
+          <div class="brand-title">Agenda<span class="grad">PRO</span> <span class="tiny muted">Premium • Cinemático</span></div>
+          <div class="brand-sub">Sistema de gestão para barbearias, salões e studios que querem crescer sem bagunça.</div>
         </div>
       </a>
 
-      <nav class="navlinks" aria-label="Navegação">
+      <nav class="navlinks" aria-label="Navegação principal">
         <a href="#beneficios">Benefícios</a>
-        <a href="#recursos">Recursos</a>
-        <a href="#planos">Preço</a>
+        <a href="#fluxo">Como funciona</a>
+        <a href="#planos">Planos</a>
         <a href="#faq">FAQ</a>
       </nav>
 
       <div class="navcta">
-        <a class="btn" href="#demo">Ver telas</a>
-        <a class="btn btn-primary pulse" href="#contato">Falar com a LEP</a>
+        <a class="btn btn-soft" href="#demo"><span>Ver experiência</span></a>
+        <a class="btn btn-primary btn-pulse" href="#contato"><span>Falar com a LEP</span></a>
       </div>
     </div>
   </header>
 
   <main id="top">
-    <div class="container hero">
-      <div class="hero-grid">
-        <div>
-          <div class="badge"><span class="dot"></span> LANÇAMENTO • Tecnologia que eleva seu atendimento</div>
-          <h1>
-            Agenda<span class="grad">PRO</span>:
-            gestão <span class="grad">moderna</span> para quem quer
-            <span class="grad">organização</span> e <span class="grad">crescimento</span>.
-          </h1>
-          <p class="sub">
-            Para <b>Barbearias</b>, <b>Salões</b>, <b>Studios de Lash</b>, <b>Unhas</b> e <b>Sobrancelhas</b>.
-            Um painel intuitivo que conecta <b>agenda</b>, <b>serviços</b>, <b>profissionais</b>, <b>produtos</b> e <b>clientes</b>
-            em um fluxo rápido e lindo.
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> LANÇAMENTO • tecnologia que transmite valor antes do primeiro clique</div>
+          <h1>Pare de perder cliente <span class="grad">enquanto trabalha.</span></h1>
+          <p class="lead">
+            O <b>AgendaPRO</b> organiza agenda, serviços, profissionais, clientes e operação em uma interface premium,
+            rápida e futurista. A sensação é de tecnologia de outro nível. A experiência é simples. O resultado é profissional.
           </p>
-
-          <div class="hero-ctas">
-            <a class="btn btn-primary pulse" href="#planos">Teste grátis 7 dias • oferta 50 vagas</a>
-            <a class="btn" href="#recursos">Ver benefícios</a>
+          <div class="hero-copy-strong">
+            Feito para <b>Barbearias</b>, <b>Salões</b>, <b>Studios de Lash</b>, <b>Unhas</b> e <b>Sobrancelhas</b> que querem
+            um sistema que não só funcione, mas também passe <b>autoridade</b>, <b>organização</b> e <b>crescimento</b>.
           </div>
 
-          <div class="mini-proof">
-            <span class="pill"><span class="check">✓</span> 7 dias grátis (tudo liberado)</span>
-            <span class="pill"><span class="check">✓</span> 1º mês R$50 (23% OFF) +2 meses bônus</span>
-            <span class="pill"><span class="check">✓</span> Interface premium</span>
-            <span class="pill"><span class="check">✓</span> Fácil de usar</span>
-            <span class="pill"><span class="check">✓</span> Suporte LEP</span>
+          <div class="hero-ctas">
+            <a class="btn btn-primary btn-pulse magnetic" href="#planos"><span>Teste grátis 7 dias</span></a>
+            <a class="btn btn-soft magnetic" href="#beneficios"><span>Ver benefícios</span></a>
+          </div>
+
+          <div class="proof-row">
+            <div class="proof-pill"><span class="tick">✓</span> 7 dias grátis com tudo liberado</div>
+            <div class="proof-pill"><span class="tick">✓</span> 1º mês por R$ 50</div>
+            <div class="proof-pill"><span class="tick">✓</span> Visual premium de verdade</div>
+            <div class="proof-pill"><span class="tick">✓</span> Fácil de usar no dia a dia</div>
+          </div>
+
+          <div class="metrics">
+            <div class="metric reveal">
+              <div class="n">+ organização</div>
+              <div class="label">Fluxo mais claro para agenda, atendimento e operação em um só lugar.</div>
+            </div>
+            <div class="metric reveal">
+              <div class="n">- ruído</div>
+              <div class="label">Menos retrabalho, menos confusão de horário e menos perda de tempo.</div>
+            </div>
+            <div class="metric reveal">
+              <div class="n">+ impacto</div>
+              <div class="label">Seu negócio passa mais valor com uma experiência visual de nível premium.</div>
+            </div>
           </div>
         </div>
 
-        <div class="showcase" id="demo" aria-label="Demonstração do sistema">
-          <div class="showcase-inner">
-            <div class="slide-img" title="Clique para abrir a imagem inteira">
-              <img id="slideImage" src="assets/login.png" alt="Tela do AgendaPRO" loading="eager">
-            </div>
+        <div class="showcase reveal" id="demo">
+          <div class="showcase-head">
+            <div class="window-dots"><span></span><span></span><span></span></div>
+            <div class="state"><span class="eyebrow-dot" style="width:8px;height:8px;box-shadow:0 0 0 5px rgba(26,213,152,.10),0 0 14px rgba(26,213,152,.35)"></span> Sistema em operação</div>
+          </div>
 
-            <div class="slide-meta">
-              <div class="kicker"><span>⚡</span><span id="slideKicker">Acesso premium</span></div>
-              <h3 id="slideTitle">Login rápido e seguro</h3>
-              <p id="slideText">
-                Entre no painel e tenha tudo organizado em segundos — com visual elegante e foco no que importa: atendimento e gestão.
-              </p>
+          <div class="showcase-grid">
+            <div class="panel">
+              <div class="topbar">
+                <div class="search">🔍 Buscar cliente, serviço ou horário</div>
+                <div class="mini-btn">＋</div>
+                <div class="mini-btn">☰</div>
+              </div>
 
-              <div class="slide-controls" aria-label="Controles do carrossel">
-                <div class="dots" id="dots"></div>
-                <div class="ctrls">
-                  <button class="iconbtn" id="prev" aria-label="Anterior">‹</button>
-                  <button class="iconbtn" id="next" aria-label="Próximo">›</button>
+              <div class="dash-title">
+                <div>
+                  <h3>Painel inteligente</h3>
+                  <p>Agenda viva, dados claros e operação com cara de tecnologia de ponta.</p>
+                </div>
+                <div class="live-chip"><i></i> AO VIVO</div>
+              </div>
+
+              <div class="stats-grid">
+                <div class="stat-box">
+                  <div class="label">Agendamentos hoje</div>
+                  <div class="value">28</div>
+                  <div class="delta">+12% esta semana</div>
+                </div>
+                <div class="stat-box">
+                  <div class="label">Clientes ativos</div>
+                  <div class="value">164</div>
+                  <div class="delta">crescimento consistente</div>
+                </div>
+                <div class="stat-box">
+                  <div class="label">Tempo livre</div>
+                  <div class="value">14h</div>
+                  <div class="delta">operação mais leve</div>
                 </div>
               </div>
 
-              <div class="progress" aria-hidden="true">
-                <div class="bar" id="bar"></div>
+              <div class="agenda-card">
+                <div class="dash-title" style="margin:0 0 12px">
+                  <div>
+                    <h3 style="font-size:20px">Próximos atendimentos</h3>
+                    <p>Um fluxo claro para sua equipe trabalhar sem travar.</p>
+                  </div>
+                </div>
+
+                <div class="agenda-list">
+                  <div class="appointment">
+                    <div class="time">09:30</div>
+                    <div>
+                      <div class="service-name">Corte + Barba</div>
+                      <div class="service-sub">João Ribeiro • Profissional: Matheus</div>
+                    </div>
+                    <div class="status ok">Confirmado</div>
+                  </div>
+
+                  <div class="appointment">
+                    <div class="time">10:15</div>
+                    <div>
+                      <div class="service-name">Alongamento de unhas</div>
+                      <div class="service-sub">Amanda Silva • Profissional: Júlia</div>
+                    </div>
+                    <div class="status wait">Aguardando</div>
+                  </div>
+
+                  <div class="appointment">
+                    <div class="time">11:00</div>
+                    <div>
+                      <div class="service-name">Lash volume brasileiro</div>
+                      <div class="service-sub">Bianca Costa • Profissional: Larissa</div>
+                    </div>
+                    <div class="status new">Novo lead</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="phone-panel">
+              <div class="phone">
+                <div class="phone-screen">
+                  <div class="badge-top">AgendaOnline • experiência premium</div>
+                  <div class="phone-head">
+                    <div>
+                      <h3>Reserva fluida</h3>
+                      <p>Agendamento com cara de app caro.</p>
+                    </div>
+                    <div class="mini-btn" style="width:42px;height:42px;font-size:15px">✦</div>
+                  </div>
+
+                  <div class="mini-stats">
+                    <div class="mini-stat">
+                      <div class="k">Profissionais</div>
+                      <div class="v">06</div>
+                    </div>
+                    <div class="mini-stat">
+                      <div class="k">Serviços</div>
+                      <div class="v">24</div>
+                    </div>
+                  </div>
+
+                  <div class="chat-feed">
+                    <div class="bubble left">Escolha o serviço ideal e veja horários disponíveis em segundos.</div>
+                    <div class="bubble right">Corte + barba • hoje às 09:30</div>
+                    <div class="bubble left">Profissional confirmado. Cliente notificado. Fluxo sem ruído.</div>
+                    <div class="bubble right">Perfeito. Quero agendar.</div>
+                  </div>
+                </div>
               </div>
 
-              <div class="tiny muted" style="margin-top:8px;">
-                Troca automática. Passe o mouse para pausar. Clique nos pontos para escolher a tela.
+              <div class="glass-card">
+                <div class="badge-top">Experiência visual</div>
+                <div style="margin-top:12px;font-size:18px;font-weight:900;letter-spacing:-.4px">Mais autoridade na primeira impressão</div>
+                <div style="margin-top:8px;color:var(--muted);font-weight:700;line-height:1.6;font-size:14px">
+                  Uma experiência moderna para transmitir organização, agilidade e valor logo no primeiro contato com seu negócio.
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <section id="beneficios">
+    <section class="section section-tight" id="beneficios">
       <div class="container">
-        <div class="section-title">
+        <div class="section-head reveal">
           <div>
-            <div class="kicker"><span>🧠</span> O que o AgendaPRO resolve</div>
-            <h2>Mais clareza, menos bagunça — <span class="grad">produção lá em cima</span>.</h2>
+            <div class="section-kicker">⚡ O que muda no seu negócio</div>
+            <h2>Seu sistema deixa de ser só “útil” e passa a parecer <span class="grad">poderoso</span>.</h2>
           </div>
-          <div class="muted tiny">Pensado para rotina real do salão e da barbearia.</div>
+          <div class="section-desc">
+            A ideia não é só mostrar funções. É transmitir <b>confiança</b>, <b>valor</b> e <b>organização</b> em cada detalhe da página.
+          </div>
         </div>
 
-        <div class="cards">
-          <article class="card">
-            <div class="chip"><span class="mini">⏱</span> Velocidade</div>
-            <h3>Atendimento mais rápido</h3>
-            <p>Cadastros e ações em poucos cliques. Menos “vai e volta”, mais cliente atendido por dia.</p>
+        <div class="feature-grid">
+          <article class="feature-card reveal">
+            <div class="feature-icon">✂️</div>
+            <h3>Agenda sem confusão</h3>
+            <p>Horários, serviços, profissionais e disponibilidade em um fluxo claro. Menos erro. Mais controle. Mais tranquilidade no dia corrido.</p>
+            <div class="feature-chip">Fluxo otimizado</div>
           </article>
 
-          <article class="card">
-            <div class="chip"><span class="mini">🧾</span> Organização</div>
-            <h3>Agenda + Serviços + Profissionais</h3>
-            <p>Serviço, duração, preço, profissional e horários conectados — sem confusão e sem retrabalho.</p>
+          <article class="feature-card reveal">
+            <div class="feature-icon">🧠</div>
+            <h3>Visual que vende</h3>
+            <p>Quando o site parece premium, o cliente percebe valor mais rápido. Isso muda a forma como o seu negócio é enxergado.</p>
+            <div class="feature-chip">Percepção de valor</div>
           </article>
 
-          <article class="card">
-            <div class="chip"><span class="mini">📦</span> Controle</div>
-            <h3>Produtos e itens sob controle</h3>
-            <p>Cadastre produtos com preço/código e acompanhe o que gira mais. Operação mais profissional.</p>
+          <article class="feature-card reveal">
+            <div class="feature-icon">🔒</div>
+            <h3>Estrutura profissional</h3>
+            <p>Clientes, serviços, agenda e operação organizados de forma segura, elegante e pronta para crescer sem gambiarra.</p>
+            <div class="feature-chip">Base sólida</div>
           </article>
 
-          <article class="card">
-            <div class="chip"><span class="mini">💬</span> Fidelização</div>
-            <h3>Clientes e histórico</h3>
-            <p>Você entende o cliente e o que ele faz com você. Melhor experiência = mais retorno.</p>
+          <article class="feature-card reveal">
+            <div class="feature-icon">💬</div>
+            <h3>Atendimento mais leve</h3>
+            <p>O fluxo reduz interrupções e deixa o time focado em atender, não em apagar incêndio a cada mensagem recebida.</p>
+            <div class="feature-chip">Mais foco</div>
           </article>
 
-          <article class="card">
-            <div class="chip"><span class="mini">🔒</span> Segurança</div>
-            <h3>Segurança para você e seus clientes</h3>
-            <p><b>Segurança 100%:</b> proteção dos dados do empresário e dos clientes, com controle por perfil e acesso organizado.</p>
+          <article class="feature-card reveal">
+            <div class="feature-icon">📈</div>
+            <h3>Mais organização, mais crescimento</h3>
+            <p>Quando tudo está claro, fica mais fácil atender melhor, vender melhor e escalar com uma imagem muito mais forte.</p>
+            <div class="feature-chip">Pronto para crescer</div>
           </article>
 
-          <article class="card">
-            <div class="chip"><span class="mini">✨</span> Premium</div>
-            <h3>Visual tecnológico (uau)</h3>
-            <p>Uma experiência moderna e intuitiva — o tipo de sistema que passa confiança desde o primeiro clique.</p>
+          <article class="feature-card reveal">
+            <div class="feature-icon">✨</div>
+            <h3>Experiência cinematográfica</h3>
+            <p>Glow, profundidade, movimento e microinterações transformam o site em algo memorável, com cara de tecnologia de alto nível.</p>
+            <div class="feature-chip">Sci-fi premium</div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="recursos">
-      <div class="container">
-        <div class="section-title">
-          <div>
-            <div class="kicker"><span>🚀</span> Recursos</div>
-            <h2>Um painel completo para <span class="grad">agenda</span> e <span class="grad">gestão</span>.</h2>
+    <section class="section" id="fluxo">
+      <div class="container timeline">
+        <div class="timeline-card reveal">
+          <div class="section-kicker">🛰 Como funciona</div>
+          <h2 style="margin:14px 0 0;font-size:34px;letter-spacing:-1px">Uma operação fluida do agendamento até o atendimento.</h2>
+          <div class="section-desc" style="margin-top:12px">
+            Tudo foi pensado para parecer moderno sem ficar exagerado. A página respira, responde ao usuário e passa a sensação de produto vivo.
           </div>
-          <div class="muted tiny">Automatizado. Intuitivo. Bonito.</div>
+
+          <div class="step-list">
+            <div class="step">
+              <div class="step-n">01</div>
+              <div><b>Cliente encontra o serviço</b><span>Escolhe o que quer, vê disponibilidade e sente confiança no visual logo de cara.</span></div>
+            </div>
+            <div class="step">
+              <div class="step-n">02</div>
+              <div><b>Agenda organiza o fluxo</b><span>Horário, duração, profissional e atendimento ficam conectados sem atrito.</span></div>
+            </div>
+            <div class="step">
+              <div class="step-n">03</div>
+              <div><b>Equipe trabalha com clareza</b><span>Menos confusão, menos retrabalho e mais tempo para focar no cliente.</span></div>
+            </div>
+            <div class="step">
+              <div class="step-n">04</div>
+              <div><b>Negócio transmite outro nível</b><span>O sistema deixa de parecer improvisado e passa a parecer realmente premium.</span></div>
+            </div>
+          </div>
         </div>
 
-        <div class="cards">
-          <article class="card">
-            <div class="chip"><span class="mini">🗓</span> Horários</div>
-            <h3>Disponibilidade por profissional</h3>
-            <p>Defina dias, horários, passo (ex: 45 min) e aplique padrões. Menos erro, mais encaixe.</p>
-          </article>
+        <div class="timeline-card reveal">
+          <div class="section-kicker">✨ Diferenciais</div>
+          <h2 style="margin:14px 0 0;font-size:34px;letter-spacing:-1px">O que o AgendaPRO resolve no seu dia a dia.</h2>
 
-          <article class="card">
-            <div class="chip"><span class="mini">✂️</span> Serviços</div>
-            <h3>Catálogo com preço e duração</h3>
-            <p>Cadastre serviços e mantenha tudo padronizado. Ativo/inativo, edição rápida e controle.</p>
-          </article>
-
-          <article class="card">
-            <div class="chip"><span class="mini">🧴</span> Produtos</div>
-            <h3>Preço + código (base para PDV)</h3>
-            <p>Cadastre produtos (bebidas, itens etc.) com preço e código — pronto para crescer com controle.</p>
-          </article>
+          <div class="step-list">
+            <div class="step">
+              <div class="step-n">A</div>
+              <div><b>Nunca mais perca cliente por demora no atendimento</b><span>O sistema ajuda a organizar o fluxo e reduz a chance de deixar cliente esperando resposta.</span></div>
+            </div>
+            <div class="step">
+              <div class="step-n">B</div>
+              <div><b>Agenda organizada sem erro de horário</b><span>Serviços, profissionais e horários ficam mais claros para evitar confusão no dia corrido.</span></div>
+            </div>
+            <div class="step">
+              <div class="step-n">C</div>
+              <div><b>Mais tempo focado no atendimento</b><span>Menos interrupção, menos correria e mais liberdade para atender bem quem está no seu espaço.</span></div>
+            </div>
+            <div class="step">
+              <div class="step-n">D</div>
+              <div><b>Seu negócio passa mais valor automaticamente</b><span>Um sistema bonito, claro e organizado fortalece sua imagem e aumenta a confiança do cliente.</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="planos">
+    <section class="section" id="planos">
       <div class="container">
-        <div class="section-title">
+        <div class="section-head reveal">
           <div>
-            <div class="kicker"><span>💎</span> Preço</div>
-            <h2>Teste grátis <span class="grad">7 dias</span> com tudo liberado.</h2>
+            <div class="section-kicker">💎 Oferta de lançamento</div>
+            <h2>Entre agora e valide tudo com <span class="grad">7 dias grátis</span>.</h2>
           </div>
-          <div class="muted tiny">Depois do teste, você escolhe se continua.</div>
-        </div>
-
-
-        <div class="offer-banner" aria-label="Oferta de lançamento">
-          <div class="offer-grid">
-            <div>
-              <div class="kicker"><span>🎁</span> Oferta de lançamento (limitada)</div>
-              <p class="offer-title">Para os <span class="grad">50 primeiros clientes</span>: teste 7 dias + bônus exclusivo</p>
-              <p class="offer-sub">
-                <b>1ª mensalidade por R$ 50</b> <span class="muted">(de <span class="strike">R$ 65</span> • <b>23% OFF</b>)</span>
-                e <b>ganhe +2 meses grátis</b> ao continuar após o teste.
-              </p>
-            </div>
-            <div class="offer-badges">
-              <span class="offer-badge highlight">23% OFF no 1º mês</span>
-              <span class="offer-badge">7 dias grátis</span>
-              <span class="offer-badge">Só 50 vagas</span>
-              <span class="offer-badge">+2 meses bônus</span>
-            </div>
+          <div class="section-desc">
+            Experimente uma operação mais organizada, com apresentação premium e uma experiência que transmite confiança desde o primeiro clique.
           </div>
         </div>
 
-        <div class="pricing">
-          <div class="price-card">
-            <h3 class="muted">Teste grátis</h3>
-            <div class="price">7<span class="tiny muted"> dias</span></div>
-            <div class="muted">Acesso completo para você validar o sistema no seu dia a dia <b>(promoção para os 50 primeiros)</b>.</div>
-            <ul class="list">
-              <li><span class="bullet">✓</span><span><b>Tudo liberado</b> (igual ao plano pago)</span></li>
-              <li><span class="bullet">✓</span><span>Agenda, serviços, profissionais e clientes</span></li>
-              <li><span class="bullet">✓</span><span>Produtos e base para estoque/PDV</span></li>
-              <li><span class="bullet">✓</span><span>Suporte para começar</span></li>
+        <div class="pricing-grid">
+          <div class="pricing-card reveal">
+            <div class="price-top">
+              <div>
+                <div class="badge-top">Teste grátis</div>
+                <div class="price">7 <small>dias</small></div>
+              </div>
+            </div>
+            <div class="price-note">Use o sistema com tudo liberado e sinta a diferença na prática antes de decidir.</div>
+            <ul class="price-list">
+              <li><span class="checkdot">✓</span><span>Acesso completo ao fluxo principal</span></li>
+              <li><span class="checkdot">✓</span><span>Agenda, profissionais, serviços e clientes</span></li>
+              <li><span class="checkdot">✓</span><span>Experiência premium desde o primeiro acesso</span></li>
+              <li><span class="checkdot">✓</span><span>Suporte para começar com segurança</span></li>
             </ul>
-            <div style="margin-top:14px;">
-              <a class="btn" href="#contato">Quero testar</a>
-            </div>
+            <div style="margin-top:18px"><a class="btn btn-soft magnetic" href="#contato"><span>Quero testar</span></a></div>
           </div>
 
-          <div class="price-card featured">
-            <div class="kicker"><span>🔥</span> Plano Mensal</div>
-            <h3>AgendaPRO</h3>
-            <div class="price">R$ 65,00<span class="tiny muted">/mês</span></div>
-            <div class="muted" style="margin-top:-4px;">
-              <span class="offer-badge highlight" style="display:inline-flex;">1º mês: R$ 50 (23% OFF)</span>
-              <span class="offer-badge" style="display:inline-flex; margin-left:8px;">+2 meses grátis (bônus)</span>
+          <div class="pricing-card featured reveal">
+            <div class="price-top">
+              <div>
+                <div class="badge-top">Plano AgendaPRO</div>
+                <div class="price">R$ 65 <small>/mês</small></div>
+              </div>
+              <div class="badge-top" style="background:rgba(124,58,237,.10);border-color:rgba(124,58,237,.26)">1º mês por R$ 50</div>
             </div>
-            <div class="muted">Continua com tudo completo, rodando liso e com suporte.</div>
-            <ul class="list">
-              <li><span class="bullet">✓</span><span>Todos os recursos do teste</span></li>
-              <li><span class="bullet">✓</span><span><b>1ª mensalidade:</b> R$ 50 (de R$ 65 • 23% OFF)</span></li>
-              <li><span class="bullet">✓</span><span><b>Bônus:</b> +2 meses grátis ao continuar após o teste</span></li>
-              <li><span class="bullet">✓</span><span>Atualizações e melhorias</span></li>
-              <li><span class="bullet">✓</span><span>Atendimento e acompanhamento</span></li>
-              <li><span class="bullet">✓</span><span>Segurança e organização de dados</span></li>
+            <div class="price-note">Visual premium, operação organizada e uma apresentação que faz o seu negócio parecer muito mais sólido.</div>
+            <ul class="price-list">
+              <li><span class="checkdot">✓</span><span>Tudo do teste grátis</span></li>
+              <li><span class="checkdot">✓</span><span>Oferta de lançamento para primeiros clientes</span></li>
+              <li><span class="checkdot">✓</span><span>Atualizações e melhorias contínuas</span></li>
+              <li><span class="checkdot">✓</span><span>Base pronta para crescer com mais automações</span></li>
+              <li><span class="checkdot">✓</span><span>Experiência que transmite valor e autoridade</span></li>
             </ul>
-            <div style="margin-top:14px;">
-              <a class="btn btn-primary pulse" href="#contato">Falar agora</a>
-            </div>
+            <div style="margin-top:18px"><a class="btn btn-primary btn-pulse magnetic" href="#contato"><span>Falar agora</span></a></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="faq">
+    <section class="section" id="faq">
       <div class="container">
-        <div class="section-title">
+        <div class="section-head reveal">
           <div>
-            <div class="kicker"><span>❓</span> FAQ</div>
+            <div class="section-kicker">❓ FAQ</div>
             <h2>Dúvidas rápidas para decidir <span class="grad">sem enrolação</span>.</h2>
           </div>
         </div>
 
-        <details>
-          <summary>Serve para barbearia, salão e studio (lash/unhas/sobrancelhas)?</summary>
-          <p>Sim. O AgendaPRO foi pensado para rotina de beleza, com serviços por tempo, profissionais, agenda e controle do dia a dia.</p>
-        </details>
-
-        <details>
-          <summary>O teste grátis libera tudo mesmo?</summary>
-          <p>Sim. São <b>7 dias</b> com todos os recursos liberados, para você testar com sua equipe e ver o resultado na prática.</p>
-        </details>
-
-        <details>
-          <summary>Como funciona a segurança dos dados?</summary>
-          <p>O AgendaPRO trabalha com acesso organizado e controle por perfil, ajudando a proteger dados do empresário e dos clientes durante a operação.</p>
-        </details>
+        <div class="faq-wrap">
+          <div class="faq-item reveal">
+            <details>
+              <summary>Serve para barbearia, salão e studio?</summary>
+              <p>Sim. O visual e a estrutura foram pensados para rotina real de barbearias, salões e studios de beleza que trabalham com agenda, serviços, profissionais e atendimento recorrente.</p>
+            </details>
+          </div>
+          <div class="faq-item reveal">
+            <details>
+              <summary>O teste grátis libera tudo mesmo?</summary>
+              <p>Sim. A proposta é justamente deixar você sentir o sistema rodando de verdade, com a mesma sensação premium do plano ativo.</p>
+            </details>
+          </div>
+          <div class="faq-item reveal">
+            <details>
+              <summary>Esse visual mais forte deixa o site pesado?</summary>
+              <p>Não. A experiência visual foi ajustada para continuar leve, fluida e agradável, sem atrapalhar a navegação do cliente.</p>
+            </details>
+          </div>
+          <div class="faq-item reveal">
+            <details>
+              <summary>Tem suporte para começar sem complicação?</summary>
+              <p>Sim. Você recebe orientação para começar com segurança e colocar o sistema para rodar no seu negócio de forma simples.</p>
+            </details>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="contato">
+    <section class="section" id="contato">
       <div class="container">
-        <div class="section-title">
-          <div>
-            <div class="kicker"><span>📲</span> Contato</div>
-            <h2>Fale com a <span class="grad">LEP Solução Empresarial</span></h2>
-            <div class="muted">Dois contatos disponíveis para você chamar agora.</div>
-          </div>
-        </div>
+        <div class="cta-card reveal">
+          <div class="cta-grid">
+            <div>
+              <div class="section-kicker">📲 Contato</div>
+              <h2 style="margin:14px 0 0;font-size:clamp(30px,3vw,46px);letter-spacing:-1.1px">Fale com a <span class="grad">LEP Solução Empresarial</span></h2>
+              <div class="section-desc" style="margin-top:12px">
+                Conheça o AgendaPRO, veja como ele pode organizar sua rotina e descubra como levar mais clareza, agilidade e valor para o seu atendimento.
+              </div>
 
-        <div class="showcase" style="padding:18px;">
-          <div class="showcase-inner" style="grid-template-columns:1fr; gap:10px;">
-            <div class="muted" style="line-height:1.65">
-              <b>AgendaPRO</b> é uma solução moderna para elevar sua gestão e colocar sua operação no nível profissional.
-              <br/>Clique em um dos números abaixo e fale no WhatsApp:
+              <div class="cta-points">
+                <div class="cta-point"><span class="tick">✓</span> Organização real para agenda, equipe e atendimento</div>
+                <div class="cta-point"><span class="tick">✓</span> Experiência premium para impressionar seus clientes</div>
+                <div class="cta-point"><span class="tick">✓</span> Mais clareza para operar e crescer com segurança</div>
+              </div>
+
+              <div class="hero-ctas" style="margin-top:22px">
+                <a class="btn btn-primary btn-pulse magnetic" href="https://www.instagram.com/lepsistemas/" target="_blank" rel="noopener noreferrer"><span>Instagram • @lepsistemas</span></a>
+                <a class="btn btn-soft magnetic" href="https://wa.me/5565984685315" target="_blank" rel="noopener noreferrer"><span>WhatsApp • 65 98468-5315</span></a>
+              </div>
             </div>
-            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;">
-              <a class="btn btn-primary pulse" id="btnWhats1" href="https://www.instagram.com/lepsistemas/" target="_blank" rel="noopener noreferrer">WhatsApp 1 • 65 98468-5315</a>
-              <a class="btn" id="btnWhats2" href="#" target="_blank" rel="noopener">WhatsApp 2 • 44 9728-0320</a>
-            </div>
-            <div class="tiny muted">
-              Desenvolvedora: <b>LEP Solução Empresarial</b> • © <span id="year"></span> AgendaPRO
+
+            <div class="cta-right">
+              <div class="contact-box">
+                <b>AgendaPRO</b>
+                <span>Sistema de gestão com estética futurista, organização real e experiência premium para negócios de beleza.</span>
+              </div>
+              <div class="contact-box">
+                <b>Contato principal</b>
+                <span>WhatsApp: 65 98468-5315<br>Instagram: @lepsistemas</span>
+              </div>
+              <div class="contact-box">
+                <b>Suporte e implantação</b>
+                <span>Comece com apoio para configurar sua operação e aproveitar melhor cada recurso do sistema.</span>
+              </div>
             </div>
           </div>
         </div>
@@ -717,161 +1234,157 @@
   </main>
 
   <footer>
-    <div class="container footergrid">
+    <div class="container footer-grid">
       <div>
-        <div class="brand" style="margin-bottom:10px;">
-          <div class="logo" aria-hidden="true"><span>AP</span></div>
-          <div>
-            <div style="font-size:15px;font-weight:950;">Agenda<span class="grad">PRO</span></div>
-            <div class="tiny muted">Premium • Magnífico</div>
-          </div>
-        </div>
-        <div class="fine">
-          Sistema completo para gestão de agenda e operação de barbearias, salões e studios.
-          <br/>Desenvolvedora: <b>LEP Solução Empresarial</b>.
-        </div>
+        <div class="brand-title">Agenda<span class="grad">PRO</span> <span class="tiny muted">Premium • Cinemático</span></div>
+        <div class="brand-sub" style="margin-top:8px">Sistema de gestão para barbearias, salões e studios com presença visual de alto nível.</div>
       </div>
-      <div>
-        <div class="fine">
-          Contatos:
-          <br/><b>WhatsApp 1:</b> 65 98468-5315
-          <br/><b>WhatsApp 2:</b> 44 9728-0320
-        </div>
-      </div>
+      <div class="tiny">© <span id="year"></span> AgendaPRO • Desenvolvido para elevar percepção de valor.</div>
     </div>
   </footer>
 
-  <div id="lightbox" style="display:none; position:fixed; inset:0; z-index:120; background:rgba(0,0,0,.72);">
-    <div style="position:absolute; inset:18px; display:grid; place-items:center;">
-      <img id="lightboxImg" alt="Imagem do sistema" style="max-width:100%; max-height:100%; border-radius:16px; border:1px solid rgba(255,255,255,.12); background:rgba(10,10,24,.6);" />
-    </div>
-    <button id="lightboxClose" class="iconbtn" style="position:fixed; top:18px; right:18px;">✕</button>
-  </div>
-
   <script>
-    const slides = [
-      { img: "assets/login.png", kicker: "Acesso premium", title: "Login rápido e seguro",
-        text: "Entrada elegante no painel administrativo, com visual futurista e navegação simples — pronto para começar sem complicação." },
-      { img: "assets/servico-modal.png", kicker: "Serviços em segundos", title: "Cadastro inteligente de serviços",
-        text: "Defina nome, duração, preço e status (ativo/inativo). Padronize o atendimento e evite erro de cobrança e tempo." },
-      { img: "assets/servicos-lista.png", kicker: "Organização total", title: "Serviços com ações rápidas",
-        text: "Edite, inative ou exclua com segurança. Catálogo sempre alinhado com o que sua equipe realmente executa." },
-      { img: "assets/horarios.png", kicker: "Agenda que trabalha", title: "Horários por profissional",
-        text: "Configure disponibilidade e passo (ex: 45 min). Menos conflitos, mais encaixes e previsibilidade para sua equipe." },
-      { img: "assets/produtos.png", kicker: "Controle de operação", title: "Produtos com preço e código",
-        text: "Cadastro rápido de produtos (bebidas, itens, etc.). Base pronta para evoluir com estoque e PDV quando você quiser." },
-      { img: "assets/menu.png", kicker: "Painel completo", title: "Tudo em um só lugar",
-        text: "Dashboard, agenda, histórico, clientes, profissionais, serviços, horários, produtos e mais — gestão completa sem perder tempo." }
-    ];
-
-    function normalizePath(p){ return String(p || "").replace(/^\.?\//, ""); }
-    function withAssets(p){ const n = normalizePath(p); return n.startsWith("assets/") ? n : ("assets/" + n); }
-    function withoutAssets(p){ return normalizePath(p).replace(/^assets\//, ""); }
-    async function exists(url){
-      try{ const res = await fetch(url, { method:"HEAD", cache:"no-cache" }); return res.ok; }
-      catch(_){ return false; }
-    }
-    async function resolveImg(path){
-      const a = withAssets(path);
-      if(await exists(a)) return a;
-      const b = withoutAssets(path);
-      if(await exists(b)) return b;
-      return path;
-    }
-
-    const imgEl = document.getElementById("slideImage");
-    const kickerEl = document.getElementById("slideKicker");
-    const titleEl = document.getElementById("slideTitle");
-    const textEl = document.getElementById("slideText");
-    const dotsWrap = document.getElementById("dots");
-    const prevBtn = document.getElementById("prev");
-    const nextBtn = document.getElementById("next");
-    const bar = document.getElementById("bar");
-    const year = document.getElementById("year");
+    const year = document.getElementById('year');
     year.textContent = new Date().getFullYear();
 
-    let index = 0;
-    let timer = null;
-    const intervalMs = 5200;
-    let paused = false;
-    let startTs = performance.now();
+    const header = document.getElementById('siteHeader');
+    const progress = document.getElementById('scrollProgress');
+    const cursorGlow = document.getElementById('cursorGlow');
 
-    function renderDots(){
-      dotsWrap.innerHTML = "";
-      slides.forEach((_, i) => {
-        const b = document.createElement("button");
-        b.className = "dotbtn";
-        b.setAttribute("aria-label", "Ir para slide " + (i+1));
-        b.addEventListener("click", () => goTo(i, true));
-        dotsWrap.appendChild(b);
+    function updateScrollUi(){
+      const y = window.scrollY || window.pageYOffset;
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const p = h > 0 ? (y / h) * 100 : 0;
+      progress.style.width = p + '%';
+      header.classList.toggle('scrolled', y > 14);
+    }
+    updateScrollUi();
+    window.addEventListener('scroll', updateScrollUi, {passive:true});
+
+    document.addEventListener('mousemove', (e) => {
+      const mx = (e.clientX / window.innerWidth) * 100;
+      const my = (e.clientY / window.innerHeight) * 100;
+      document.documentElement.style.setProperty('--mx', mx + '%');
+      document.documentElement.style.setProperty('--my', my + '%');
+    });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
       });
-    }
-    function setDotCurrent(){ [...dotsWrap.children].forEach((b, i) => b.setAttribute("aria-current", String(i === index))); }
+    }, {threshold: .12});
+    revealEls.forEach((el, i) => {
+      el.style.transitionDelay = (i % 8) * 55 + 'ms';
+      io.observe(el);
+    });
 
-    function goTo(i, resetProgress=false){
-      index = (i + slides.length) % slides.length;
-      const s = slides[index];
-
-      imgEl.style.opacity = "0";
-      imgEl.style.transform = "scale(1.00)";
-
-      setTimeout(async () => {
-        const resolved = await resolveImg(s.img);
-        imgEl.src = resolved;
-        imgEl.alt = s.title;
-        kickerEl.textContent = s.kicker;
-        titleEl.textContent = s.title;
-        textEl.textContent = s.text;
-
-        imgEl.onload = () => {
-          imgEl.style.transition = "opacity .25s ease, transform .45s ease";
-          imgEl.style.opacity = "1";
-          imgEl.style.transform = "scale(1.00)";
-        };
-      }, 120);
-
-      setDotCurrent();
-      if(resetProgress){ startTs = performance.now(); bar.style.width = "0%"; }
-    }
-
-    function next(){ goTo(index + 1, true); }
-    function prev(){ goTo(index - 1, true); }
-
-    function tick(){
-      if(paused) return;
-      const now = performance.now();
-      const p = Math.min(1, (now - startTs) / intervalMs);
-      bar.style.width = (p * 100).toFixed(1) + "%";
-      if(p >= 1){ startTs = now; next(); }
-    }
-    function start(){
-      if(timer) clearInterval(timer);
-      timer = setInterval(tick, 50);
-    }
-
-    nextBtn.addEventListener("click", () => { startTs = performance.now(); next(); });
-    prevBtn.addEventListener("click", () => { startTs = performance.now(); prev(); });
-
-    const showcase = document.querySelector(".showcase");
-    showcase.addEventListener("mouseenter", () => paused = true);
-    showcase.addEventListener("mouseleave", () => { paused = false; startTs = performance.now(); });
-
-    renderDots();
-    goTo(0, true);
-    start();
-
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener("click", (e) => {
-        const href = a.getAttribute("href");
-        if(!href || href === "#") return;
-        const el = document.querySelector(href);
-        if(!el) return;
-        e.preventDefault();
-        el.scrollIntoView({behavior:"smooth", block:"start"});
-        history.pushState(null, "", href);
+    // Magnetic buttons
+    const magneticButtons = document.querySelectorAll('.magnetic');
+    magneticButtons.forEach((btn) => {
+      btn.addEventListener('mousemove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px) translateY(-2px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
       });
     });
 
-      </script>
+    // 3D tilt on cards
+    const tiltEls = window.innerWidth > 1180 ? document.querySelectorAll('.feature-card, .showcase') : document.querySelectorAll('.feature-card');
+    tiltEls.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width;
+        const py = (e.clientY - r.top) / r.height;
+        const rx = (0.5 - py) * 7;
+        const ry = (px - 0.5) * 8;
+        card.style.transform = `perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // starfield
+    function setupCanvas(id, count, speedScale){
+      const canvas = document.getElementById(id);
+      const ctx = canvas.getContext('2d');
+      let w, h, dpr, items = [];
+      function resize(){
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = canvas.width = Math.floor(window.innerWidth * dpr);
+        h = canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        items = Array.from({length: count}, () => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: (Math.random() * 1.5 + 0.3) * dpr,
+          a: Math.random() * 0.8 + 0.1,
+          vx: (Math.random() - 0.5) * 0.08 * speedScale * dpr,
+          vy: (Math.random() * 0.18 + 0.04) * speedScale * dpr
+        }));
+      }
+      function draw(){
+        ctx.clearRect(0,0,w,h);
+        for(const s of items){
+          s.x += s.vx;
+          s.y += s.vy;
+          if(s.y > h + 20) { s.y = -20; s.x = Math.random() * w; }
+          if(s.x > w + 20) s.x = -20;
+          if(s.x < -20) s.x = w + 20;
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(255,255,255,${s.a})`;
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      resize();
+      draw();
+      window.addEventListener('resize', resize);
+    }
+    setupCanvas('stars', 110, 0.5);
+    setupCanvas('particles', 42, 1);
+
+    // ripple effect
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e){
+        const r = this.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        const size = Math.max(r.width, r.height) * 1.15;
+        ripple.style.position = 'absolute';
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - r.left - size / 2) + 'px';
+        ripple.style.top = (e.clientY - r.top - size / 2) + 'px';
+        ripple.style.borderRadius = '50%';
+        ripple.style.background = 'rgba(255,255,255,.22)';
+        ripple.style.transform = 'scale(0)';
+        ripple.style.opacity = '.75';
+        ripple.style.pointerEvents = 'none';
+        ripple.style.transition = 'transform .55s ease, opacity .55s ease';
+        this.appendChild(ripple);
+        requestAnimationFrame(() => {
+          ripple.style.transform = 'scale(1)';
+          ripple.style.opacity = '0';
+        });
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    // slight parallax on floating orbs using mouse
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - .5) * 12;
+      const y = (e.clientY / window.innerHeight - .5) * 12;
+      document.querySelector('.aurora').style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+    });
+  </script>
 </body>
 </html>
